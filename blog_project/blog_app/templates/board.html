@@ -1,11 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>board</title>
 </head>
+
 <body>
-    
+    <nav>
+        <div class="nav_logo">
+            <span>myLOG</span>
+        </div>
+        <div class="nav_side">
+            <span title="일상">일상</span>
+            <span title="요리">요리</span>
+            <span title="여행">여행</span>
+            <span title="영화">영화</span>
+            <span title="IT">IT</span>
+            <button>Logout</button>
+            <button>Just Write</button>
+        </div>
+    </nav>
+    <section>
+        <header>
+            블로그 작성내용
+        </header>
+        <article>
+            블로그 추천글내용 작성내용이랑 양옆정렬
+        </article>
+        <aside>
+            <!-- 각 내용들을 div 담아서 between으로 css할지 몰라 일단 적어만 뒀습니다. -->
+            <button class="left">수정하기</button>
+            <button class="left">삭제하기</button>
+            <button class="right">공유하기</button>
+            <br>
+            <span>다음글</span>
+            <span>글의 제목입니다.</span>
+            <span>날짜</span>
+            <br>
+            <span>이전글</span>
+            <span>글의 제목입니다.</span>
+            <span>날짜</span>
+        </aside>
+    </section>
+    <footer>
+        피그마 마지막 회색줄
+        Made with Django
+    </footer>
 </body>
+
 </html>
