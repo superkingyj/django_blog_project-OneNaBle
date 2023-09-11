@@ -11,16 +11,19 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure--vu^pva@5ai9^7%-!5%!ro94-lw_%+64sow$8#vo$niu+_8_i7"
+SECRETS_DIR = BASE_DIR / '.secrets'
+secrets = json.load(open(os.path.join(SECRETS_DIR, 'secret.json')))
+SECRET_KEY = secrets['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -52,6 +55,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "blog_project.urls"
 
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -74,10 +78,16 @@ WSGI_APPLICATION = "blog_project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+db = json.load(open(os.path.join(SECRETS_DIR, 'db.json')))
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "blog",
+        "USER": db['USER'],
+        "PASSWORD": db['PASSWORD'],
+        "HOST": "localhost",
+        "PORT": db['PORT'],
     }
 }
 
