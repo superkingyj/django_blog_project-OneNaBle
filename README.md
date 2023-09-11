@@ -2,8 +2,7 @@
 
 ![](https://velog.velcdn.com/images/superkingyj/post/89f1c72c-8a0b-4233-83b9-815488df5867/image.jpeg)	
 
-> 이 세상엔 3개의 레전드가 있다.	
-<br>	
+> 이 세상엔 3개의 레전드가 있다. <br>
 > 원피스 ... 나루도 ... 그리고 **블로그 프로젝트**	
 
 
