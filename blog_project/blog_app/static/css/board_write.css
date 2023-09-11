@@ -1,0 +1,9 @@
+.header{
+    background-color: white;
+   
+}
+
+.write_top_bar_menu{
+    display: flex;
+    justify-content: flex-end;
+}
