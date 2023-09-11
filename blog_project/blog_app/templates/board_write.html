@@ -19,41 +19,119 @@
                 <li>Just Write!</li>
             </ul>
         </div>
+
         <form>
             <div class="write">
                 <div class="title">
                     <input class="title_bar" placeholder="제목"></input>
-                <div>
-                <div class="editor">
-                    <textarea class="editor_write"></textarea> 
+                </div>
+
+                <div id="post_toolbar_stack_layout" class="post_toolbar_stack_layout">
+                    <div id="post_toolbar_btn_group" class="post_toolbar_btn_group">
+                        <div id="btn_1" class="titletag_listbox" tabindex="-1">
+                        <button id="btn_1_open" type="button" tabindex="-1">
+                            <span class="btn-txt">Normal</span>
+                            <ul>
+                                <li>문단</li>
+                                <li>
+                                       <h1>헤딩 1</h1>
+                                </li>
+                                <li>
+                                    <h2>헤딩 2</h2>
+                                </li>
+                                <li>
+                                    <h3>헤딩 3</h3>
+                                </li>
+                                <li>
+                                    <h4>헤딩 4</h4>
+                                </li>
+                                <li>
+                                    <h5>헤딩 5</h5>
+                                </li>
+                                <li>
+                                    <h6>헤딩 6</h6>
+                                </li>
+                            </ul>
+                        </button>
+                        </div>
+                        <div id="btn_2" class="toolbar_btn" tabindex="-1">
+                            <button id="btn_2-button" type="button" tabindex="-1">
+                                <b>B</b>
+                        </div>
+                        <div id="btn_3" class="toolbar_btn" tabindex="-1" >
+                            <button id="btn_3-button" type="button" tabindex="-1">
+                                <i>I</i>
+                        </div>
+                        <div id="btn_4" class="toolbar_btn" tabindex="-1">
+                            <button id="btn_4-button" type="button" tabindex="-1">
+                                <u>U</u>
+                        </div>
+                        <div id="btn_5" class="toolbar_btn" tabindex="-1">
+                            <button id="btn_5-button" type="button" tabindex="-1">
+                                <span>Link</span>
+                        </div>
+                        <div id="btn_6" class="toolbar_btn" tabindex="-1">
+                            <button id="btn_6-button" type="button" tabindex="-1">
+                                <span>1.</span>
+                        </div>
+                        <div id="btn_7" class="toolbar_btn" tabindex="-1">
+                            <button id="btn_7-button" type="button" tabindex="-1">
+                                <span>•</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text_box">
+                    <textarea class="text_box"></textarea> 
                 </div>
             </div>
-            <div class="write_side_bar">
+    </div>
+
+
+
+            <div class="right_sidebar">
+            <div class="Ai_writer">
                 <div>AI글 자동완성</div>
-                <div>
-                    <div>TOPIC</div>
-                    <ul>
-                        <li>일상</li>
-                        <li>요리</li>
-                        <li>여행</li>
-                        <li>영화</li>
-                        <li>IT / 전자기기</li>
-                    </ul>
+            </div>
+                <div class ="TOPIC">
+                    <div id="TOPIC">TOPIC</div>
+                    <div>
+                        <form>
+                            <label>
+                              <input type="radio">일상
+                            </label>
+                            <br>
+                            <label>
+                              <input type="radio">요리
+                            </label>
+                            <br>
+                            <label>
+                              <input type="radio">여행
+                            </label>
+                            <br>
+                            <label>
+                              <input type="radio">IT/전자기기
+                            </label>
+                          </form>
+                    </div>
                 </div>
-                <div>
-                    <div>UPLOAD INFO</div>
+
+            
+
+            
+                <div class="UPLOAD_INFO">
+                    <div id="UPLOAD_INFO">UPLOAD INFO</div>
                     <div>상태: 미게시</div>
-                    <div>이미지 업로드</div>
+                    <button>이미지 업로드</button>
                     <button>임시저장</button>
                     <button>글 작성</button>
                 </div>
-            </div>
-        </form>
-        <div class="footer">
-            Make with Django
+           
         </div>
-    </div>
-
+    
+<footer>
+    피그마 마지막 회색줄
+    Made with Django
+</footer>
     
 </body>
 </html>
