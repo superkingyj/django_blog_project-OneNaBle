@@ -21,6 +21,13 @@ nav{
   color: #F9F8F4;
 }
 
+#login{
+  width: 100px;
+  height: 39px;
+  border-radius: 2px;
+  background: #F9F8F4;
+}
+
 section{
   /* width: 525px; */
   

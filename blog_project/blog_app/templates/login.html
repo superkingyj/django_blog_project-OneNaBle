@@ -1,13 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
     <title>login</title>
 </head>
 <body>
+    <section>
     <h3>Login</h3>
-    어드민페이지 로그인을 css하는건지
-    잘몰라서 일단 비워뒀습니다!
+    <div class="box">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="username" autocomplete="on" required>
+        <input type="password" name="password" placeholder="password" autocomplete="on" req>
+        <button type="submit">login</button>
+    </div>
+    </section>
 </body>
 </html>
