@@ -1,137 +1,93 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>write</title>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/board_write.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <ul class="write_top_bar_menu">
-                <li>일상</li>
-                <li>요리</li>
-                <li>여행</li>
-                <li>영화</li>
-                <li>IT</li>
-                <li>Logout</li>
-                <li>Just Write!</li>
-            </ul>
-        </div>
-
-        <form>
-            <div class="write">
-                <div class="title">
-                    <input class="title_bar" placeholder="제목"></input>
-                </div>
-
-                <div id="post_toolbar_stack_layout" class="post_toolbar_stack_layout">
-                    <div id="post_toolbar_btn_group" class="post_toolbar_btn_group">
-                        <div id="btn_1" class="titletag_listbox" tabindex="-1">
-                        <button id="btn_1_open" type="button" tabindex="-1">
-                            <span class="btn-txt">Normal</span>
-                            <ul>
-                                <li>문단</li>
-                                <li>
-                                       <h1>헤딩 1</h1>
-                                </li>
-                                <li>
-                                    <h2>헤딩 2</h2>
-                                </li>
-                                <li>
-                                    <h3>헤딩 3</h3>
-                                </li>
-                                <li>
-                                    <h4>헤딩 4</h4>
-                                </li>
-                                <li>
-                                    <h5>헤딩 5</h5>
-                                </li>
-                                <li>
-                                    <h6>헤딩 6</h6>
-                                </li>
-                            </ul>
-                        </button>
-                        </div>
-                        <div id="btn_2" class="toolbar_btn" tabindex="-1">
-                            <button id="btn_2-button" type="button" tabindex="-1">
-                                <b>B</b>
-                        </div>
-                        <div id="btn_3" class="toolbar_btn" tabindex="-1" >
-                            <button id="btn_3-button" type="button" tabindex="-1">
-                                <i>I</i>
-                        </div>
-                        <div id="btn_4" class="toolbar_btn" tabindex="-1">
-                            <button id="btn_4-button" type="button" tabindex="-1">
-                                <u>U</u>
-                        </div>
-                        <div id="btn_5" class="toolbar_btn" tabindex="-1">
-                            <button id="btn_5-button" type="button" tabindex="-1">
-                                <span>Link</span>
-                        </div>
-                        <div id="btn_6" class="toolbar_btn" tabindex="-1">
-                            <button id="btn_6-button" type="button" tabindex="-1">
-                                <span>1.</span>
-                        </div>
-                        <div id="btn_7" class="toolbar_btn" tabindex="-1">
-                            <button id="btn_7-button" type="button" tabindex="-1">
-                                <span>•</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="text_box">
-                    <textarea class="text_box"></textarea> 
-                </div>
+    <header>
+        <nav>
+            <div class="nav_logo">
+                <img src="{% static "img/common/mylog_black.svg" %}">
             </div>
-    </div>
+            <div class="nav_side">
+                <span title="일상">일상</span>
+                <span title="요리">요리</span>
+                <span title="여행">여행</span>
+                <span title="영화">영화</span>
+                <span title="IT">IT</span>
+                <button>Login</button>
+                <button>Just Write!</button>
+            </div>
+        </nav>
+    </header>
 
-
-
-            <div class="right_sidebar">
-            <div class="Ai_writer">
+    <div class="content">
+        <form method="POST">
+            {% csrf_token %}
+            <div>
+                <input id="title" placeholder="제목">
+                {{form.media}}
+                {{form.as_p}}
+            </div>
+        </form>
+        
+        <div class="right_sidebar">
+            <div class="ai_writer">
+                <img src="{% static "img/board_write/ai.svg" %}">
                 <div>AI글 자동완성</div>
             </div>
-                <div class ="TOPIC">
-                    <div id="TOPIC">TOPIC</div>
-                    <div>
-                        <form>
-                            <label>
-                              <input type="radio">일상
-                            </label>
-                            <br>
-                            <label>
-                              <input type="radio">요리
-                            </label>
-                            <br>
-                            <label>
-                              <input type="radio">여행
-                            </label>
-                            <br>
-                            <label>
-                              <input type="radio">IT/전자기기
-                            </label>
-                          </form>
-                    </div>
-                </div>
 
-            
-
-            
-                <div class="UPLOAD_INFO">
-                    <div id="UPLOAD_INFO">UPLOAD INFO</div>
-                    <div>상태: 미게시</div>
-                    <button>이미지 업로드</button>
-                    <button>임시저장</button>
-                    <button>글 작성</button>
+            <div class ="topic">
+                <div>TOPIC</div>
+                <div>
+                    <form>
+                        <label>
+                            <input type="radio">일상
+                        </label>
+                        <br>
+                        <label>
+                            <input type="radio">요리
+                        </label>
+                        <br>
+                        <label>
+                            <input type="radio">여행
+                        </label>
+                        <br>
+                        <label>
+                            <input type="radio">영화
+                        </label>
+                        <br>
+                        <label>
+                            <input type="radio">IT/전자기기
+                        </label>
+                        </form>
                 </div>
-           
+            </div>
+
+            <div class="upload_info">
+                <div>UPLOAD INFO</div>
+                <div>상태: 미게시</div>
+                <button>이미지 업로드</button>
+                <div class="save_temp_and_submit">
+                    <input type="submit" id="save_temp" value="임시저장">
+                    <input type="submit" id="submit" value="글 작성">
+                </div>
+            </div>
         </div>
+    </div>
     
-<footer>
-    피그마 마지막 회색줄
-    Made with Django
-</footer>
-    
+    <footer>
+        <div class='container'>
+            <p>Made with <span>ONENABLE</span></p>
+        </div>    
+    </footer>
+ 
 </body>
 </html>
