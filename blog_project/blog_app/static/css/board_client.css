@@ -1,6 +1,87 @@
 *{
+  font-family: 'Pretendard', sans-serif;
+}
+
+header{
+  width: 1440px;
+  height: 520px;
+  background-color: #1E1E1E;
+}
+
+nav{
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav_side {
+  display: inline-flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 40px;
+  color: #F9F8F4;
+}
+
+section{
+  /* width: 525px; */
+  
+  color: #FFF;
+  font-family: Pretendard;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.pop_title{
+  color: #FFF;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.pop_content{
+  width: 525px;
+}
+
+.pop_img{
+  width: 600px;
+  height: 343px;
+}
+
+article {
+  padding-top: 54px;
+  padding-left: 208px;
+  padding-right: 208px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.posting{
+  width: 315px;
+  height: 600px;
+}
+
+.posting-img{
+  width: 315px;
+  height: 320px;
+}
+
+.posting_title{
+  color: #1E1E1E;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+
+/* 
+*{
     font-family: 'Pretendard', sans-serif;
 }
+
 .nav-bar{
     display: flex;
     align-items: center;
@@ -60,7 +141,7 @@ button:hover{
 .primary-button {
     display: inline-block;
     background-color: #f9f8f4;
-    border-radius: 2px; /* 너비와 높이가 같으므로 50%로 설정하면 동그라미 모양이 됩니다 */
+    border-radius: 2px; 
     text-decoration: none;
     text-align: center;
     font-weight: bold;
@@ -68,11 +149,11 @@ button:hover{
     padding: 10px 25px;
   }
   
-  .primary-button:hover {
-    background-color: #696969;
-    transition: transform 0.8s,  background-color 0.3s;
-    color: #ffffff;
-  }
+.primary-button:hover {
+  background-color: #696969;
+  transition: transform 0.8s,  background-color 0.3s;
+  color: #ffffff;
+}
   
 .logout-button:hover{
   color: rgb(255, 162, 162);
@@ -84,3 +165,5 @@ button:hover{
     align-items: center;
     gap: 20px;
   }
+
+*/
