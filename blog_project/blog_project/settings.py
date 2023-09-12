@@ -86,7 +86,7 @@ DATABASES = {
         "NAME": "blog",
         "USER": db['USER'],
         "PASSWORD": db['PASSWORD'],
-        "HOST": "localhost",
+        "HOST": db['HOST'],
         "PORT": db['PORT'],
     }
 }
