@@ -1,0 +1,51 @@
+body {
+    display: flex;
+    width: 1440px;
+    height: 1024px;
+    justify-content: center;
+    align-items: center;
+    background: #F9F8F4;
+}
+
+section {
+    width: 300px;
+    height: 300px;
+}
+
+h3 {
+    color: #1E1E1E;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+
+.box {
+    width: 300px;
+    height: 264px;
+    border-radius: 2px;
+    border: 1px solid #CAC8C5;
+    background: #FFF;
+}
+
+input {
+    display: flex;
+    width: 200px;
+    padding: 10px;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+button {
+    display: flex;
+    width: 200px;
+    padding: 11px 82px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 2px;
+    background: #1E1E1E;
+    color: #FFF;
+}
