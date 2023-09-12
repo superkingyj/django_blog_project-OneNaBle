@@ -10,12 +10,12 @@
 <body>
     <section>
     <h3>Login</h3>
-    <div class="box">
+    <form class="box" method='post'>
         {% csrf_token %}
         <input type="text" name="username" placeholder="username" autocomplete="on" required>
         <input type="password" name="password" placeholder="password" autocomplete="on" req>
         <button type="submit">login</button>
-    </div>
+    </form>
     </section>
 </body>
 </html>
