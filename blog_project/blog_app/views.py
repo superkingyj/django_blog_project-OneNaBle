@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from .form import BlogForm
 
 # Create your views here.
 def board_client(request):
@@ -14,7 +15,8 @@ def board_admin(request):
     return render(request, 'board_admin.html')
 
 def write(request):
-    return render(request, 'write.html')
+    form = BlogForm()
+    return render(request, 'board_write.html', {'form': form})
 
 def board(request):    
     return render(request, 'board.html')

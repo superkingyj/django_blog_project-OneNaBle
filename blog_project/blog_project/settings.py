@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "blog_app",
+    "ckeditor",
 ]
 
 MIDDLEWARE = [
@@ -78,7 +79,7 @@ WSGI_APPLICATION = "blog_project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-db = json.load(open(os.path.join(SECRETS_DIR, 'db.json')))
+db = json.load(open(os.path.join(SECRETS_DIR, 'db_local.json')))
 
 DATABASES = {
     "default": {
@@ -126,7 +127,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = os.path.join(BASE_DIR, 'blog_app/static/')
+
+# MEDIA
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+# settings.py
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow" 
+
+
+CKEDITOR_CONFIGS={
+  'default': {
+    'toolbar': 'Full',
+    'height': 300,
+    'width': 740,
+  },
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
