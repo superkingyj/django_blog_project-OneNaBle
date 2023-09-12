@@ -15,77 +15,77 @@
             <img src="{% static "img/common/black_log.svg" %}">
         </div>
         <div class="nav_side">
-            <span title="일상">일상</span>
+            <span title="content">일상</span>
             <span title="요리">요리</span>
             <span title="여행">여행</span>
             <span title="영화">영화</span>
             <span title="IT">IT</span>
-            <button>Logout</button>
-            <button>Just Write</button>
+            <button class="logout">Logout</button>
+            <button class="Justwrite">Just Write!</button>
         </div>
     </nav>
     <section>
         <header>
-            <div class="main_posting">
-                <div class="posting_date"> 
-                    2023 09 06
-                </div>
-                <div class="posting_title">
-                    Lorem ipsum dolor
-                </div>
-                <div class="writer">
-                    by userid
-                </div>
-                <div class="content_tag">
+            <div class "main_box">
+                <div class="main_posting">
+                    <div class="posting_date"> 
+                        2023 09 06
+                    </div>
+                    <div class="posting_title">
+                        Lorem ipsum dolor
+                    </div>
+                    <div class="writer">
+                        by userid
+                    </div>
+                    <div class="content_tag">
                     일상
-                </div>
-                <div class="posting_content">
-                    Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo scelerisque euismod euismod.
-                </div>
-                <img class="posting-img" src="{% static "img/board_client/posting_04.svg" %}">
-                <div class="posting_content">
-                    Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo scelerisque euismod euismod. Turpis dictumst luctus nisi placerat purus dolor luctus vitae pretium. Gravida faucibus scelerisque quis mi consequat malesuada.    
+                    </div>
+                    <div class="posting_content">
+                        Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo scelerisque euismod euismod.
+                    </div>
+                    <img class="posting-img" src="{% static "img/board_client/posting_04.svg" %}">
+                    <div class="posting_content">
+                        Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo scelerisque euismod euismod. Turpis dictumst luctus nisi placerat purus dolor luctus vitae pretium. Gravida faucibus scelerisque quis mi consequat malesuada.    
                 </div>
             </div>
         </header>
         <article>
             <div class="recommend">
-                Other posts<br>
-                you may like
+                Other posts <br> you may like
             </div>
 
-            <div class="posting">
-                <img class="posting-img" src="{% static "img/board_client/posting_01.svg" %}">
-                <div class="posting_title">
+            <div class="sub_posting">
+                <img class="sub_img" src="{% static "img/board_client/posting_01.svg" %}">
+                <div class="sub_title">
                     Lorem ipsum dolor
                 </div>
             </div>
     
-            <div class="posting">
-                <img class="posting-img" src="{% static "img/board_client/posting_02.svg" %}">
-                <div class="posting_title">
+            <div class="sub_posting">
+                <img class="sub_img" src="{% static "img/board_client/posting_02.svg" %}">
+                <div class="sub_title">
                     Lorem ipsum dolor
                 </div>
             </div>
         </article>
-        <aside>
-            <!-- 각 내용들을 div 담아서 between으로 css할지 몰라 일단 적어만 뒀습니다. -->
-            <button class="left">수정하기</button>
-            <button class="left">삭제하기</button>
-            <button class="right">공유하기</button>
-            <br>
-            <span>다음글</span>
-            <span>글의 제목입니다.</span>
-            <span>날짜</span>
-            <br>
-            <span>이전글</span>
-            <span>글의 제목입니다.</span>
-            <span>날짜</span>
-        </aside>
+    <div class ="make">
+        <button class="left">수정하기</button>
+        <button class="left">삭제하기</button>
+        <button class="right">공유하기</button>
+    </div>
+        <div class = "next">
+        <span>다음글</span>
+        <span>글의 제목입니다.</span>
+        <span>날짜</span>
+    </div>
+        <div class = "prev">
+        <span>이전글</span>
+        <span>글의 제목입니다.</span>
+        <span>날짜</span>
+    </div>
     </section>
     <footer>
-        피그마 마지막 회색줄
-        Made with Django
+        <span class="endtag">Made with Django</span>
     </footer>
 </body>
 
