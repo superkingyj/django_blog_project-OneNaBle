@@ -79,7 +79,7 @@ WSGI_APPLICATION = "blog_project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-db = json.load(open(os.path.join(SECRETS_DIR, 'db_local.json')))
+db = json.load(open(os.path.join(SECRETS_DIR, 'db.json')))
 
 DATABASES = {
     "default": {
@@ -127,8 +127,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = os.path.join(BASE_DIR, 'blog_app/static/')
-
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'blog_app/static',
+]
 # MEDIA
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
