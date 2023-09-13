@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/board_client.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/board_client.css'%}?{%now "U" %}"/>
+    <link rel="stylesheet" href="{% static 'css/footer.css'%}?{%now "U" %}"/>
     <title>메인페이지</title>
 </head>
 
@@ -23,7 +23,7 @@
                 <span title="여행">여행</span>
                 <span title="영화">영화</span>
                 <span title="IT">IT</span>
-                <button id="login">Login</button>
+                <a id="login" href="{% url 'login' %}">Login</a>
             </div>
         </nav>
         <section>
