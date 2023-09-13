@@ -18,7 +18,6 @@ class BlogPostViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
  
 def board_client(request):
     return render(request, 'board_client.html')
