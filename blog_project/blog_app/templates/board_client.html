@@ -1,17 +1,18 @@
-{% load static %}{% extends 'base_content.html' %}{% extends 'base_css.html'%}
+{% extends 'base_content.html' %} {% load static%}
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% block style %} <link rel="stylesheet" type="text/css" href="{% static
-    'css/board_client.css'%}?{% now "U" %}"/> {% endblock %}
+
+    {%block style%} <link rel="stylesheet" type="text/css" href="{% static
+    'css/board_client.css?{% now "U" %}' %}"/> {%endblock style%}
     <title>메인페이지</title>
   </head>
 
   <body>
-    {% block content %}
+    {%block content%}
     <header>
       <nav>
         <div class="nav_logo">
@@ -40,7 +41,6 @@
         <img class="pop_img" src="{% static "img/board_client/pop_img.svg" %}">
       </section>
     </header>
-
-    {% endblock %}
+    {% endblock content%}
   </body>
 </html>

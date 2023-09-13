@@ -1,4 +1,4 @@
-{% load static %}{% extends 'base_css.html'%}
+{% extends 'base_content.html'%}{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,8 +6,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>write</title>
-    {% block style %} <link rel="stylesheet" href="{% static
-    'css/board_write.css'%}?{% now "U" %}"/> {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/board_write.css'%}?{% now "U"
+    %}"/>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/reset.css' %}"
+    />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css'%}?{%
+    now "U" %}"/>
   </head>
   <body>
     <header>
