@@ -20,3 +20,8 @@ footer .container p{
 span{
     font-weight: bold;
 }
+
+.container p {
+    margin-right: 330px;
+    margin-bottom: 50px;
+}
