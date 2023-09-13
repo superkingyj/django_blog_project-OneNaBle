@@ -1,39 +1,27 @@
-{% extends 'base_content.html'%}{% load static %}
-
+{% extends 'base_content2.html'%} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>write</title>
+    {% block style %}
     <link rel="stylesheet" href="{% static 'css/board_write.css'%}?{% now "U"
     %}"/>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/reset.css' %}"
-    />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css'%}?{%
-    now "U" %}"/>
+    <title>write</title>
+    {% endblock style %}
   </head>
   <body>
     <header>
-      <nav>
-        <div class="nav_logo">
-          <img src="{% static "img/common/mylog_black.svg" %}">
-        </div>
-        <div class="nav_side">
-          <span title="일상">일상</span>
-          <span title="요리">요리</span>
-          <span title="여행">여행</span>
-          <span title="영화">영화</span>
-          <span title="IT">IT</span>
+      {% block content %}
+
+      
           <button>Login</button>
           <button>Just Write!</button>
         </div>
       </nav>
     </header>
-
+    {%endblock content%}
+    {% block content2 %}
     <div class="content">
       <form method="POST">
         {% csrf_token %}
@@ -84,4 +72,5 @@
       </div>
     </footer>
   </body>
+  {% endblock content2 %}
 </html>
