@@ -13,7 +13,7 @@
 <body>
     <nav>
         <div class="nav_logo">
-            <img src="{% static "img/common/black_log.svg" %}">
+            <img src="{% static "img/common/mylog_black.svg" %}">
         </div>
         <div class="nav_side">
             <span title="content">일상</span>
@@ -27,7 +27,7 @@
     </nav>
     <section>
         <header>
-            <div class "main_box">
+            <div class="main_box">
                 <div class="main_posting">
                     <div class="posting_date"> 
                         2023 09 06
@@ -49,41 +49,46 @@
                         Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo scelerisque euismod euismod. Turpis dictumst luctus nisi placerat purus dolor luctus vitae pretium. Gravida faucibus scelerisque quis mi consequat malesuada.    
                 </div>
             </div>
-        </header>
-        <article>
-            <div class="recommend">
-                Other posts <br> you may like
-            </div>
-
-            <div class="sub_posting">
-                <img class="sub_img" src="{% static "img/board_client/posting_01.svg" %}">
-                <div class="sub_title">
-                    Lorem ipsum dolor
-                </div>
-            </div>
+            <div class ="smallbox">
+                    <div class="recommend">
+                        <div class="toppic">
+                            Other posts <br> you may like
+                        </div>
+                        <div class="sub_posting">
+                            <img class="sub_img" src="{% static "img/board_client/posting_01.svg" %}">
+                            <div class="sub_title">
+                                Lorem ipsum dolor
+                            </div>
+                        </div>
     
-            <div class="sub_posting">
-                <img class="sub_img" src="{% static "img/board_client/posting_02.svg" %}">
-                <div class="sub_title">
-                    Lorem ipsum dolor
+                        <div class="sub_posting">
+                            <img class="sub_img" src="{% static "img/board_client/posting_02.svg" %}">
+                            <div class="sub_title">
+                                Lorem ipsum dolor
+                        </div>
+                    </div>
                 </div>
             </div>
-        </article>
-    <div class ="make">
-        <button class="left">수정하기</button>
-        <button class="left">삭제하기</button>
-        <button class="right">공유하기</button>
-    </div>
-        <div class = "next">
-        <span>다음글</span>
-        <span>글의 제목입니다.</span>
-        <span>날짜</span>
-    </div>
-        <div class = "prev">
-        <span>이전글</span>
-        <span>글의 제목입니다.</span>
-        <span>날짜</span>
-    </div>
+        </header>
+        <div class="main_box">
+            <div class = "btnbox" style="gap: 10px;">
+                <div class ="make">
+                    <button class="left">수정하기</button>
+                    <button class="left">삭제하기</button>
+                </div>
+                <button class="right">공유하기</button>
+                <div class = "next">
+                    <span>다음글</span>
+                    <span>글의 제목입니다.</span>
+                    <span>날짜</span>
+                </div>
+                <div class = "prev">
+                    <span>이전글</span>
+                    <span>글의 제목입니다.</span>
+                    <span>날짜</span>
+                </div>
+            </div>
+        </div>
     </section>
     <footer>
         <span class="endtag">Made with Django</span>
