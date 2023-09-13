@@ -1,127 +1,53 @@
-{% load static %}
+{% extends 'base_content.html' %}
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/board_admin.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static
+    'css/board_admin.css'%}?{% now "U" %}"/>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/reset.css' %}"
+    />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css'%}?{%
+    now "U" %}"/>
     <title>메인페이지</title>
-</head>
+  </head>
 
-<body>
+  <body>
+    {% block content %}
     <header>
-        <nav>
-            <div class="nav_logo">
-                <img src="{% static "img/common/mylog_white.svg" %}">
-            </div>
-            <div class="nav_side">
-                <span title="일상">일상</span>
-                <span title="요리">요리</span>
-                <span title="여행">여행</span>
-                <span title="영화">영화</span>
-                <span title="IT">IT</span>
-                <button id="just_write">Just Write!</button>
-            </div>
-        </nav>
-        <section>
-            <div class='pop_title_and_content'>
-                <div class="pop_title">Lorem ipsum dolor</div>
-                <div class="pop_content"> 
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, architecto? Assumenda, distinctio consequuntur omnis nobis nostrum doloribus consequatur ipsam necessitatibus iure praesentium cumque voluptates, ullam similique beatae. Et, inventore fugit.
-                </div>
-                <div class="read_more">READ MORE</div>
-            </div>
-            <img class="pop_img" src="{% static "img/board_client/pop_img.svg" %}">
-        </section>
+      <nav>
+        <div class="nav_logo">
+          <img src="{% static "img/common/mylog_white.svg" %}">
+        </div>
+        <div class="nav_side">
+          <span title="일상">일상</span>
+          <span title="요리">요리</span>
+          <span title="여행">여행</span>
+          <span title="영화">영화</span>
+          <span title="IT">IT</span>
+          <button id="logout">Logout</button>
+          <button id="just_write">Just Write!</button>
+        </div>
+      </nav>
+      <section>
+        <div class="pop_title_and_content">
+          <div class="pop_title">Lorem ipsum dolor</div>
+          <div class="pop_content">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque,
+            architecto? Assumenda, distinctio consequuntur omnis nobis nostrum
+            doloribus consequatur ipsam necessitatibus iure praesentium cumque
+            voluptates, ullam similique beatae. Et, inventore fugit.
+          </div>
+          <div class="read_more">READ MORE</div>
+        </div>
+        <img class="pop_img" src="{% static "img/board_client/pop_img.svg" %}">
+      </section>
     </header>
-    <article>
-        <div class="posting">
-            <img class="posting-img" src="{% static "img/board_client/posting_01.svg" %}">
-            <div class="posting_date"> 
-                2023-09-07 12:13:01
-            </div>
-            <div class="posting_title">
-                Lorem ipsum dolor
-            </div>
-            <div class="posting_content">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis similique velit possimus nostrum praesentium voluptate, obcaecati, accusantium vel enim iusto error officiis eligendi, consectetur optio ratione atque nulla. A, alias.
-            </div>
-        </div>
-
-        <div class="posting">
-            <img class="posting-img" src="{% static "img/board_client/posting_02.svg" %}">
-            <div class="posting_date"> 
-                2023-09-07 12:13:01
-            </div>
-            <div class="posting_title">
-                Lorem ipsum dolor
-            </div>
-            <div class="posting_content">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis similique velit possimus nostrum praesentium voluptate, obcaecati, accusantium vel enim iusto error officiis eligendi, consectetur optio ratione atque nulla. A, alias.
-            </div>
-        </div>
-
-        <div class="posting">
-            <img class="posting-img" src="{% static "img/board_client/posting_03.svg" %}">
-            <div class="posting_date"> 
-                2023-09-07 12:13:01
-            </div>
-            <div class="posting_title">
-                Lorem ipsum dolor
-            </div>
-            <div class="posting_content">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis similique velit possimus nostrum praesentium voluptate, obcaecati, accusantium vel enim iusto error officiis eligendi, consectetur optio ratione atque nulla. A, alias.
-            </div>
-        </div>
-
-        <div class="posting">
-            <img class="posting-img" src="{% static "img/board_client/posting_01.svg" %}">
-            <div class="posting_date"> 
-                2023-09-07 12:13:01
-            </div>
-            <div class="posting_title">
-                Lorem ipsum dolor
-            </div>
-            <div class="posting_content">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis similique velit possimus nostrum praesentium voluptate, obcaecati, accusantium vel enim iusto error officiis eligendi, consectetur optio ratione atque nulla. A, alias.
-            </div>
-        </div>
-
-        <div class="posting">
-            <img class="posting-img" src="{% static "img/board_client/posting_02.svg" %}">
-            <div class="posting_date"> 
-                2023-09-07 12:13:01
-            </div>
-            <div class="posting_title">
-                Lorem ipsum dolor
-            </div>
-            <div class="posting_content">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis similique velit possimus nostrum praesentium voluptate, obcaecati, accusantium vel enim iusto error officiis eligendi, consectetur optio ratione atque nulla. A, alias.
-            </div>
-        </div>
-        
-        <div class="posting">
-            <img class="posting-img" src="{% static "img/board_client/posting_03.svg" %}">
-            <div class="posting_date"> 
-                2023-09-07 12:13:01
-            </div>
-            <div class="posting_title">
-                Lorem ipsum dolor
-            </div>
-            <div class="posting_content">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis similique velit possimus nostrum praesentium voluptate, obcaecati, accusantium vel enim iusto error officiis eligendi, consectetur optio ratione atque nulla. A, alias.
-            </div>
-        </div>
-        
-    </article>
-    <footer>
-        <div class='container'>
-            <p>Made with <span>ONENABLE</span></p>
-        </div>    
-    </footer>
-</body>
-
+    {% endblock %}
+  </body>
 </html>
