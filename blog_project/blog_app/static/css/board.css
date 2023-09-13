@@ -2,10 +2,12 @@
     font-family: 'Pretendard', sans-serif;
 }
 
+
 nav {
     background-color: #F9F8F4;
     display: flex;
     justify-content: space-around;
+    height: 150px;
 }
 
 nav.span {
@@ -19,6 +21,7 @@ nav.span {
     gap: 40px;
     color: #1E1E1E;
 }
+
 
 .logout {
     color: #1E1E1E;
@@ -194,4 +197,8 @@ span.endtag {
     flex-direction: column;
     align-items: center;
     text-align: center;
+}
+
+.container{
+    display:flex;
 }
