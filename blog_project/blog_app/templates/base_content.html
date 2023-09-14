@@ -4,14 +4,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% block style%} {% endblock %}
     <link
       rel="stylesheet"
       type="text/css"
       href="{% static 'css/reset.css' %}"
     />
     <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css'%}?{%
-    now "U" %}"/>
+    now "U" %}"/> 
+    {% block style%} {% endblock %}
+
     <title>base_content</title>
   </head>
   <body>
