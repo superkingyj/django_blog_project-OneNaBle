@@ -13,6 +13,11 @@ nav{
     justify-content: space-around;
 }
   
+.nav_logo{
+    margin-top: 20px;
+}
+
+
 .nav_side {
     display: inline-flex;
     justify-content: flex-end;
@@ -49,11 +54,21 @@ section{
     font-size: 48px;
     font-style: normal;
     font-weight: 700;
+    margin-bottom: 20px;
 }
   
 .pop_content{
     width: 525px;
 }
+
+/* 다시하기 */
+/* .read_more{
+    width: 100px;
+    height: 39px;
+    border-radius: 2px;
+    background: #F9F8F4;
+    font-weight: bold;
+} */
 
 .pop_img{
     width: 600px;
