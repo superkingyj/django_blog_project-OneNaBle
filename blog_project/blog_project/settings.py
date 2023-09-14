@@ -43,9 +43,11 @@ INSTALLED_APPS = [
     "rest_framework",
     "blog_app",
     "ckeditor",
+    'corsheaders',  # cors
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware", # cors
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -54,6 +56,10 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:8000',
+)
 
 ROOT_URLCONF = "blog_project.urls"
 
