@@ -5,10 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    {%block style%} 
     <link rel="stylesheet" type="text/css" href="{% static 'css/board_admin.css' %}?{% now "U" %}"/>
-    {%endblock style%}
     <title>메인페이지</title>
   </head>
 
@@ -16,9 +13,7 @@
     {% block content %}
     <header>
       <nav>
-        <div class="nav_logo">
-          <img src="{% static "img/common/mylog_white.svg" %}">
-        </div>
+        <div class="nav_logo"> <img src="{% static "img/common/mylog_white.svg" %}"> </div>
         <div class="nav_side">
           <span title="일상">일상</span>
           <span title="요리">요리</span>

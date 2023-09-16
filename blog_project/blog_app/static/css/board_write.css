@@ -2,12 +2,6 @@
     font-family: 'Pretendard', sans-serif;
 }
   
-header{
-    width: 1440px;
-    height: 105px;
-    background-color: #F9F8F4;
-}
-
 nav {
     display: flex;
     justify-content: space-around;
@@ -105,4 +99,9 @@ textarea{
     background-color: #1e1e1e;
     color: #fff;
     width: 100%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
 }
