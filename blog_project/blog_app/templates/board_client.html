@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{% static 'css/board_client.css'%}?{%now "U" %}"/>
     <link rel="stylesheet" href="{% static 'css/footer.css'%}?{%now "U" %}"/>
     <title>메인페이지</title>
+    {%endblock style%}
+    
 </head>
 
 <body>
@@ -39,6 +41,7 @@
             <img class="pop_img" src="{% static "img/board_client/pop_img.svg" %}">
         </section>
     </header>
+  
     <article>
         <div class="posting_list">
             <div class="posting">
@@ -57,7 +60,8 @@
     <footer>
         <div class='container'> <p>Made with <span>ONENABLE</span></p> </div>    
     </footer>
-
-</body>
-<script src="{% static 'js/main.js' %}"></script>  
+    <script src="{% static 'js/main.js' %}"></script>  
+    {% endblock content%}
+  </body>
+  
 </html>
