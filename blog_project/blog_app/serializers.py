@@ -1,10 +1,21 @@
 from rest_framework import serializers
 from .models import BlogPost, Comment, Like, User
+from django_summernote import fields as summer_fields
 
 class BlogPostSerializer(serializers.ModelSerializer):
+    summer_fields = summer_fields.SummernoteTextField()
+    
     class Meta:
         model = BlogPost
         fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['summer_fields'].requried = False
+
+    def create(self, validated_data):
+        return BlogPost.objects.create(**validated_data)
+            
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
