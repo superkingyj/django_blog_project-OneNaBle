@@ -1,16 +1,17 @@
 from django import forms
 from .models import BlogPost
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django_summernote.widgets import SummernoteWidget
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-class BlogForm(forms.ModelForm):
-    content = forms.CharField(widget=CKEditorUploadingWidget())
-
+class BlogPostForm(forms.ModelForm):
     class Meta:
         model = BlogPost
-        fields = ['content']
+        fields = ['title', 'summer_fields']
+        widget = {
+            'summer_fields' : SummernoteWidget()
+        }
         
 
 class CustomLoginForm(forms.Form):
@@ -22,15 +23,3 @@ class CustomLoginForm(forms.Form):
         widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'class': 'login-input'}),
         label='',
     )
-
-
-# class BlogPostForm(forms.ModelForm):
-#     class Meta:
-#         model = BlogPost
-#         exclude = ['created_at']
-
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.fields['topic'].required = False
-#         self.fields['publish'].required = False
-#         self.fields['views'].required = False

@@ -25,14 +25,14 @@ async function fetchAndDisplayData() {
         });
         // user_id가 1인 포스트 중에서 like_count가 가장 높은 포스트 찾기
         // 고쳐야 로그인한 유저 id 할껀대 잘모르곘슴당
-        // let maxLikePost = null;
-        // data.forEach((post) => {
-        //     if (post.user_id === 1) {
-        //         if (!maxLikePost || post.like_count > maxLikePost.like_count) {
-        //             maxLikePost = post;
-        //         }
-        //     }
-        // });
+        let maxLikePost = null;
+        data.forEach((post) => {
+            if (post.user_id === 1) {
+                if (!maxLikePost || post.like_count > maxLikePost.like_count) {
+                    maxLikePost = post;
+                }
+            }
+        });
 
     } catch (error) {
         console.error('Error fetching data:', error.message);

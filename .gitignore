@@ -2,6 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,python,macos,windows
 
 ## 원나블 추가 ##
+.vscode
 django_env
 .secrets/
 
