@@ -8,26 +8,15 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" href="{% static 'css/board_client.css'%}?{%now "U" %}"/>
     <link rel="stylesheet" href="{% static 'css/footer.css'%}?{%now "U" %}"/>
+    <link rel="stylesheet" href="{% static 'css/header_black.css'%}?{%now "U" %}"/>
     <title>메인페이지</title>
-    {%endblock style%}
-    
 </head>
 
 <body>
     <header>
-        <nav>
-            <div class="nav_logo" onclick=moveToMain()>
-                <img src="{% static "img/common/mylog_white.svg" %}">
-            </div>
-            <div class="nav_side">
-                <span title="일상">일상</span>
-                <span title="요리">요리</span>
-                <span title="여행">여행</span>
-                <span title="영화">영화</span>
-                <span title="IT">IT</span>
-                <a id="login" href="{% url 'login' %}">Login</a>
-            </div>
-        </nav>
+
+        {% include 'header.html' %}
+
         <section>
             <div class='pop_title_and_content'>
                 <div class="pop_title">Lorem ipsum dolor</div>
@@ -57,11 +46,8 @@
         </div>
     </article>
 
-    <footer>
-        <div class='container'> <p>Made with <span>ONENABLE</span></p> </div>    
-    </footer>
+    <footer> {% include 'footer.html' %} </footer>
     <script src="{% static 'js/main.js' %}"></script>  
-    {% endblock content%}
+    <script src="{% static 'js/header.js' %}"></script>
   </body>
-  
 </html>

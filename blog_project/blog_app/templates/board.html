@@ -1,79 +1,68 @@
-{% extends 'base_content2.html'%} {% load static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/reset.css'%}?{%now "U" %}"/>
+        <link rel="stylesheet" href="{% static 'css/header_white.css'%}?{%now "U" %}"/>
+        <link rel="stylesheet" href="{% static 'css/footer.css'%}?{%now "U" %}"/>
+        <link rel="stylesheet" href="{% static 'css/board.css'%}?{%now "U" %}"/>
+        <title>board</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block style %}
-    <link rel="stylesheet" href="{% static 'css/board.css'%}?{%now "U" %}"/>
-    <title>board</title>
-    {% endblock style %}
-</head>
-
-<body>
-    <header>
-        {% block content %}
-            <button class="logout">Logout</button>
-            <button class="Justwrite">Just Write!</button>
-        </div>
-    </nav>
-</header>
-{% endblock content %}
-
-{% block content2 %}
-    <section>
+    <body>
         <header>
-            <div class="main_box">
-                <div class="main_posting">
+            {% include 'header.html' %}
+        </header>
+        
+        <section>
+            <div class="main_and_sall_box">
+                <div class="main_box">
                     <div class="posting_date"> {{ blog_post.upload_date }} </div>
                     <div class="posting_title"> {{ blog_post.title }} </div>
                     <div class="writer"> {{ blog_post.user }} </div>
                     <div class="content_tag"> {{ blog_post.category }} </div>
                     <div class="posting_content"> {{ blog_post.content|safe }} </div>
                 </div>
-            </div>
-            <div class ="smallbox">
+                <div class ="smallbox">
                     <div class="recommend">
-                        <div class="toppic">
-                            Other posts <br> you may like
-                        </div>
-                        
+                        <div class="toppic"> Other posts <br> you may like </div>
                         {% for related_post in related_posts %}
-                        <div onclick=moveToRelatedPost({{ related_post.id }})>
+                        <div class="sub_posting" onclick=moveToRelatedPost({{ related_post.id }})>
                             <img class="sub_img" src="{{ related_post.img }}">
                             <div class="sub_title"> {{ related_post.title }} </div>
                         </div>
                         {% endfor %}
-
                     </div>
                 </div>
             </div>
-        </header>
-        <div class="main_box">
-            <div class = "btnbox" style="gap: 10px;">
-                <div class ="make">
-                    <button class="left" id="edit">수정하기</button>
-                    <button class="left" id="delete">삭제하기</button>
+            <div class="button_box">
+                <div class="button_flex">
+                    <div class ="button_flex gap">
+                        <button class="left" id="edit_btn">수정하기</button>
+                        <button class="left" id="delete_btn">삭제하기</button>
+                    </div>
+                    <button id="share_btn">공유하기</button>
                 </div>
-                <button class="right">공유하기</button>
-                <div class = "next">
-                    <span>다음글</span>
-                    <span>글의 제목입니다.</span>
-                    <span>날짜</span>
+                <div class="button_flex">
+                    <div class="button_flex gap text">
+                        <span style="opacity: 0.5;">다음글</span>
+                        <span>글의 제목입니다.</span>
+                    </div>
+                    <span style="opacity: 0.5;">날짜</span>
                 </div>
-                <div class = "prev">
-                    <span>이전글</span>
-                    <span>글의 제목입니다.</span>
-                    <span>날짜</span>
+                <div class = "button_flex">
+                    <div class="button_flex gap text">
+                        <span style="opacity: 0.5;">이전글</span>
+                        <span>글의 제목입니다.</span>
+                    </div>
+                    <span style="opacity: 0.5;">날짜</span>
                 </div>
             </div>
-        </div>
-    </section>
-    <footer>
-        <span class="endtag">Made with Django</span>
-    </footer>
+        </section>
+        <footer> {% include 'footer.html' %} </footer>
 </body>
 <script src="{% static 'js/board.js' %}"></script>
-{% endblock content2 %}
+<script src="{% static 'js/header.js' %}"></script>
 </html>
