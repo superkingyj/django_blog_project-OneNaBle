@@ -1,31 +1,31 @@
-*{
+* {
   font-family: 'Pretendard', sans-serif;
 }
 
-header{
+header {
   width: 100%;
   height: 520px;
   background-color: #1E1E1E;
 }
 
-nav{
+nav {
   display: flex;
   justify-content: space-around;
 }
 
-.nav_logo{
+.nav_logo {
   margin-top: 20px;
 }
 
 .nav_side {
   display: inline-flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   gap: 40px;
   color: #F9F8F4;
 }
 
-#login{
+#login {
   width: 100px;
   height: 39px;
   border-radius: 2px;
@@ -33,7 +33,7 @@ nav{
 }
 
 /* 인기 포스팅 */
-section{  
+section {
   color: #FFF;
   font-family: Pretendard;
   font-size: 13px;
@@ -43,11 +43,11 @@ section{
   display: flex;
   justify-content: center;
   align-items: center;
-  position:relative;
+  position: relative;
 }
 
 
-.pop_title{
+.pop_title {
   color: #FFF;
   font-size: 48px;
   font-style: normal;
@@ -55,12 +55,12 @@ section{
   margin-right: 550px;
 }
 
-.pop_content{
+.pop_content {
   width: 525px;
   line-height: 25px;
 }
 
-.pop_title_and_content{
+.pop_title_and_content {
   position: absolute;
   height: auto;
   display: flex;
@@ -68,7 +68,7 @@ section{
   line-height: 2;
 }
 
-.read_more{
+.read_more {
   margin-top: 20px;
   background-color: #3a3a3a;
   color: #f9f8f4;
@@ -78,12 +78,12 @@ section{
   font-size: 14px
 }
 
-.read_more:hover{
+.read_more:hover {
   background-color: #474747;
   transition: transform 0.8s;
 }
 
-.pop_img{
+.pop_img {
   width: 1000px;
   height: 343px;
   margin-left: 500px;
@@ -94,16 +94,16 @@ article {
   padding: 54px 0px;
 }
 
-.posting_list{
+.posting_list {
   width: 1024px;
-  margin: auto;    
+  margin: auto;
   display: flex;
-  gap: 38px; 
-  flex-wrap: wrap; 
+  gap: 38px;
+  flex-wrap: wrap;
 }
 
-.posting{
-  width: calc((100% - (2 * 38px)) / 3); 
+.posting {
+  width: calc((100% - (2 * 38px)) / 3);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -124,14 +124,14 @@ article {
   font-family: 'Pretendard', sans-serif;
 }
 
-.posting-img{
+.posting-img {
   width: 100%;
   height: 220px;
   overflow: hidden;
   position: relative;
 }
 
-.posting-img img{
+.posting-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -141,13 +141,13 @@ article {
   transform: translate(-50%, -50%);
 }
 
-.posting_title{
+.posting_title {
   color: #1E1E1E;
   font-size: 20px;
   font-weight: 700;
 }
 
-.posting_content{
+.posting_content {
   color: #7c7c7c;
   display: flex;
   gap: 20px;
@@ -156,7 +156,7 @@ article {
 }
 
 
-#login{
+#login {
   width: 100px;
   height: 39px;
   border-radius: 2px;
@@ -166,7 +166,7 @@ article {
   align-items: center;
   justify-content: center;
   text-align: center;
-  
+
   color: #1E1E1E;
   font-family: Noto Sans KR;
   font-size: 13px;
