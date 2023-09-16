@@ -20,13 +20,6 @@ class BlogPostViewSet(viewsets.ModelViewSet):
     queryset = BlogPost.objects.all().order_by('-views')
     serializer_class = BlogPostSerializer
     http_method_names = ['get', 'post', 'put', 'delete']
-
-        
-    def retrieve(self, request, *args, **kwargs):
-        blog_post = BlogPost.objects.get(pk=kwargs['pk'])
-        blog_post.views += 1
-        blog_post.save()
-        return super().retrieve(request, *args, **kwargs)
         
     def create(self, request):
         content = request.data['content']
@@ -75,7 +68,7 @@ def custom_login(request):
             
             if user is not None:
                 login(request, user)
-                return redirect('board_admin')
+                return redirect('board_client')
             
     return render(request, 'login.html', {'form': form})
 
