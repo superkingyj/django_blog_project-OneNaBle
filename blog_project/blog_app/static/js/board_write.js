@@ -26,10 +26,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (response.ok) {
             FLAG = "update";
             const data = await response.json();
-            let noteEditable = document.querySelector('iframe').contentWindow.document.querySelector(".note-editable");
             const title = document.getElementById('id_title');
-            noteEditable.innerHTML = data.content;
             title.value = data.title;
+
+            let noteEditable = document.querySelector('iframe').contentWindow.document.querySelector(".note-editable");
+            noteEditable.innerHTML = data.content;
         }
     }
 })

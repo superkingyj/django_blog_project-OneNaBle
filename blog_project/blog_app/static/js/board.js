@@ -1,7 +1,7 @@
 const RETRIEVE_API = "http://localhost:8000/api/post/";
 const DELETE_API = "http://localhost:8000/api/post/";
 const WRITE_URL = "http://127.0.0.1:8000/write/";
-const MAIN_URL = "http://127.0.0.1:8000/";
+
 
 function getCookie(name) {
     var cookieValue = null;
@@ -24,7 +24,7 @@ async function update() {
     window.location.href = WRITE_URL + blogPostId;
 }
 
-document.getElementById('edit').addEventListener('click', update);
+document.getElementById('edit_btn').addEventListener('click', update);
 
 // 삭제
 async function deletePost() {
@@ -40,7 +40,7 @@ async function deletePost() {
     window.location.href = MAIN_URL;
 }
 
-document.getElementById('delete').addEventListener('click', deletePost);
+document.getElementById('delete_btn').addEventListener('click', deletePost);
 
 function moveToRelatedPost(relatedPostId) {
     window.location.href = MAIN_URL + 'board/' + relatedPostId;
