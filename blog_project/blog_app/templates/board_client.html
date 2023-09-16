@@ -1,47 +1,67 @@
-{% extends 'base_content.html' %} {% load static%}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    {%block style%} 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/board_client.css' %}?{% now "U" %}"/>
-    {%endblock style%}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/board_client.css'%}?{%now "U" %}"/>
+    <link rel="stylesheet" href="{% static 'css/footer.css'%}?{%now "U" %}"/>
     <title>메인페이지</title>
-  </head>
+    {%endblock style%}
+    
+</head>
 
-  <body>
-    {%block content%}
+<body>
     <header>
-      <nav>
-        <div class="nav_logo">
-          <img src="{% static "img/common/mylog_white.svg" %}">
-        </div>
-        <div class="nav_side">
-          <span title="일상">일상</span>
-          <span title="요리">요리</span>
-          <span title="여행">여행</span>
-          <span title="영화">영화</span>
-          <span title="IT">IT</span>
-          <a id="login" href="{% url 'login' %}">Login</a>
-        </div>
-      </nav>
-      <section>
-        <div class="pop_title_and_content">
-          <div class="pop_title">Lorem ipsum dolor</div>
-          <div class="pop_content">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque,
-            architecto? Assumenda, distinctio consequuntur omnis nobis nostrum
-            doloribus consequatur ipsam necessitatibus iure praesentium cumque
-            voluptates, ullam similique beatae. Et, inventore fugit.
-          </div>
-          <div class="read_more">READ MORE</div>
-        </div>
-        <img class="pop_img" src="{% static "img/board_client/pop_img.svg" %}">
-      </section>
+        <nav>
+            <div class="nav_logo" onclick=moveToMain()>
+                <img src="{% static "img/common/mylog_white.svg" %}">
+            </div>
+            <div class="nav_side">
+                <span title="일상">일상</span>
+                <span title="요리">요리</span>
+                <span title="여행">여행</span>
+                <span title="영화">영화</span>
+                <span title="IT">IT</span>
+                <a id="login" href="{% url 'login' %}">Login</a>
+            </div>
+        </nav>
+        <section>
+            <div class='pop_title_and_content'>
+                <div class="pop_title">Lorem ipsum dolor</div>
+                <div class="pop_content"> 
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, architecto? Assumenda,
+                    distinctio consequuntur omnis nobis nostrum doloribus consequatur ipsam necessitatibus iure
+                    praesentium cumque voluptates, ullam similique beatae. Et, inventore fugit.
+                </div>
+                <button class="read_more">READ MORE</button>
+            </div>
+            <img class="pop_img" src="{% static "img/board_client/pop_img.svg" %}">
+        </section>
     </header>
+  
+    <article>
+        <div class="posting_list">
+            <div class="posting">
+                <div class="posting-img">
+                    <img src="{% static "img/board_client/posting_01.svg" %}">
+                </div>
+                <div class="posting-info">
+                    <div class="posting_date"> 2023-09-07 12:13:01 </div>
+                    <div class="posting_title"> Lorem ipsum dolor </div>
+                    <div class="posting_content"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis similique velit possimus nostrum praesentium voluptate, obcaecati, accusantium vel enim iusto error officiis eligendi, consectetur optio ratione atque nulla. A, alias. </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class='container'> <p>Made with <span>ONENABLE</span></p> </div>    
+    </footer>
+    <script src="{% static 'js/main.js' %}"></script>  
     {% endblock content%}
   </body>
+  
 </html>

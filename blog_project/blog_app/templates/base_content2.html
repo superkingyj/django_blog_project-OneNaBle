@@ -1,16 +1,12 @@
 {% load static %}
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-    rel="stylesheet"
-    type="text/css"
-    href="{% static 'css/reset.css' %}"
-    />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css'%}?{%
-      now "U" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css'%}?{% now "U" %}"/>
       <title>base_css</title>
       {% block style %}{% endblock style %}
   </head>
@@ -18,7 +14,7 @@
   <body>
     <header>
       <nav>
-        <div class="nav_logo">
+        <div class="nav_logo" onclick=>
           <img src="{% static "img/common/mylog_black.svg" %}">
         </div>
         <div class="nav_side">
@@ -30,5 +26,5 @@
           {% block content %} {% endblock %}
           
         </body>
-        {% block content2 %}{% endblock %}
+        {% block content2 %} {% endblock %}
 </html>

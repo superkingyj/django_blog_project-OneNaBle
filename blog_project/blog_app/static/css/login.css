@@ -20,6 +20,7 @@ h3 {
     font-style: normal;
     font-weight: 900;
     line-height: normal;
+    margin-bottom: 12px;
 }
 
 .box {
@@ -30,17 +31,32 @@ h3 {
     background: #FFF;
 }
 
+.idpassword {
+    padding-right: 30px;
+    padding-left: 15px;
+    padding-top: 30px;
+    text-align: center;
+}
+
+.login {
+    margin-top: 23px;
+    margin-left: 35px;
+    margin-bottom: 53px;
+}
+
+
 input {
     display: flex;
     width: 200px;
     padding: 10px;
-    align-items: flex-start;
+    margin: 23px;
+    align-items: center;
     gap: 10px;
 }
 
 button {
     display: flex;
-    width: 200px;
+    width: 230px;
     padding: 11px 82px;
     justify-content: center;
     align-items: center;
