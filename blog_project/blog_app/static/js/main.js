@@ -1,37 +1,54 @@
+const POSTLIST_API = 'http://127.0.0.1:8000/api/post';
+const POPULAR_POST_API = 'http://127.0.0.1:8000/api/post';
+const BOARD_URL = 'http://127.0.0.1:8000/board';
+
 document.addEventListener('DOMContentLoaded', function () {
-    fetchAndDisplayData();
+    fetchPostList();
 });
 
-async function fetchAndDisplayData() {
-    const postListApi = 'http://127.0.0.1:8000/api/post';
-
+async function fetchPostList() {
     try {
-        const response = await fetch(postListApi);
-        if (!response.ok) {
-            throw new Error('API 호출에 실패하였습니다.');
-        }
+        const response = await fetch(POSTLIST_API);
+        if (!response.ok) { throw new Error('API 호출에 실패하였습니다.'); }
         const data = await response.json();
-        const postsContainer = document.getElementById('posts-container');
-        // console.log('data', data)//데이터 불러오는지 체크
+        const postsContainer = document.getElementsByClassName('posting_list')[0];
+        let postHTML = '';
 
-        data.forEach((post) => {
-            // console.log(post.upload_date);//날짜불러오는지 체크
-            const postElement = document.createElement('div');
-            postElement.className = 'posting';
-            postElement.innerHTML = `
-                <div class="posting-img">
-                </div>
-                <div class="posting-info">
-                    <div class="posting_date">${post.upload_date}</div>
-                    <div class="posting_title">${post.title}</div>
-                    <div class="posting_content">${post.content}</div>
+        for (let i = 0; i < data.length; i++) {
+            const currData = data[i]
+
+            if (i == 0) { fetchPopularPost(currData); }
+
+            const newContent = currData.content.replace(/<[^>]*>?/g, '');
+            postHTML += `
+                <div class='posting' onclick=window.location.href="${BOARD_URL}/${currData.id}">
+                    <div class="posting-img">
+                        <img src=${currData.img}> 
+                    </div>
+                    <div class="posting-info">
+                        <div class="posting_date">${currData.upload_date}</div>
+                        <div class="posting_title">${currData.title}</div>
+                        <div class="posting_content">${newContent}</div>
+                    </div>
                 </div>
             `;
-            postsContainer.appendChild(postElement);
-        });
+
+        }
+        postsContainer.innerHTML = postHTML;
     } catch (error) {
         console.error('Error fetching data:', error.message);
     }
 }
 
-fetchAndDisplayData();
+function fetchPopularPost(data) {
+    const newContent = data.content.replace(/<[^>]*>?/g, '');
+    popTitle = document.getElementsByClassName('pop_title')[0];
+    popContent = document.getElementsByClassName('pop_content')[0];
+    popImg = document.getElementsByClassName('pop_img')[0];
+    readMoreButton = document.getElementsByClassName('read_more')[0];
+
+    popTitle.innerHTML = data.title;
+    popContent.innerHTML = newContent;
+    popImg.src = data.img;
+    readMoreButton.setAttribute('onclick', `window.location.href="${BOARD_URL}/${data.id}"`);
+}

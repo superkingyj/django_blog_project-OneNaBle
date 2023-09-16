@@ -5,33 +5,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% block style %}
-    <link rel="stylesheet" href="{% static 'css/board_write.css'%}?{% now "U"
-    %}"/>
+    <link rel="stylesheet" href="{% static 'css/board_write.css'%}?{% now "U"%}"/>
     <title>write</title>
     {% endblock style %}
   </head>
+ 
   <body>
     <header>
       {% block content %}
-
-      
           <button>Login</button>
           <button>Just Write!</button>
         </div>
       </nav>
     </header>
     {%endblock content%}
+    
     {% block content2 %}
     <div class="content">
-      <form method="POST">
+      <form method="POST" id="post_form" action="{% url 'post_list' %}">
         {% csrf_token %}
-        <div>
-          <input id="title" placeholder="제목" />
-          {{form.media}} {{form.as_p}}
-        </div>
+        {{ form|safe }}
       </form>
 
       <div class="right_sidebar">
+        
         <div class="ai_writer">
           <img src="{% static "img/board_write/ai.svg" %}">
           <div>AI글 자동완성</div>
@@ -40,16 +37,12 @@
         <div class="topic">
           <div>TOPIC</div>
           <div>
-            <form>
-              <label> <input type="radio" />일상 </label>
-              <br />
-              <label> <input type="radio" />요리 </label>
-              <br />
-              <label> <input type="radio" />여행 </label>
-              <br />
-              <label> <input type="radio" />영화 </label>
-              <br />
-              <label> <input type="radio" />IT/전자기기 </label>
+            <form id="topic_form">
+              <input type="radio" checked name="post_category" value='1'/>일상
+              <input type="radio" name="post_category" value='2'/>요리 
+              <input type="radio" name="post_category" value='3'/>여행 
+              <input type="radio" name="post_category" value='4'/>영화 
+              <input type="radio" name="post_category" vaue='5'/>IT/전자기기
             </form>
           </div>
         </div>
@@ -57,10 +50,9 @@
         <div class="upload_info">
           <div>UPLOAD INFO</div>
           <div>상태: 미게시</div>
-          <button>이미지 업로드</button>
           <div class="save_temp_and_submit">
-            <input type="submit" id="save_temp" value="임시저장" />
-            <input type="submit" id="submit" value="글 작성" />
+            <button id="save_temp_btn">임시저장</button>
+            <button id="post_form_btn">글 작성</button>
           </div>
         </div>
       </div>
@@ -72,5 +64,8 @@
       </div>
     </footer>
   </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="{% static 'js/board_write.js' %}"></script>  
   {% endblock content2 %}
 </html>
