@@ -26,6 +26,8 @@ class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Like
         fields = '__all__'
+    def create(self, validated_data):
+        return Like.objects.create(**validated_data)
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
