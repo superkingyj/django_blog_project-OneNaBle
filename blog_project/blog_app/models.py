@@ -43,6 +43,7 @@ class Comment(models.Model):
     blog_post = models.ForeignKey(BlogPost, on_delete=models.CASCADE)
     comment = models.TextField()
     chrmt_upload_date = models.DateTimeField(auto_now_add=True)
+    like_cnt = models.IntegerField(default=0)
 
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
