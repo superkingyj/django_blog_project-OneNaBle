@@ -22,7 +22,14 @@
                     <div class="posting_date"> {{ blog_post.upload_date }} </div>
                     <div class="posting_title"> {{ blog_post.title }} </div>
                     <div class="writer"> {{ blog_post.user }} </div>
-                    <div class="content_tag"> {{ blog_post.category }} </div>
+                    <div class="content_tag"> 
+                        {% if blog_post.category_id == 1 %} 일상
+                        {% elif blog_post.category_id == 2 %} 요리
+                        {% elif blog_post.category_id == 3 %} 여행
+                        {% elif blog_post.category_id == 4 %} 영화
+                        {% elif blog_post.category_id == 5 %} IT
+                        {% endif %}
+                    </div>
                     <div class="posting_content"> {{ blog_post.content|safe }} </div>
                 </div>
                 <div class ="smallbox">
@@ -58,6 +65,27 @@
                         <span>글의 제목입니다.</span>
                     </div>
                     <span style="opacity: 0.5;">날짜</span>
+                </div>
+            </div>
+            
+            <div class="comment">
+                <div name="comment_form" method="POST">
+                    <div class="user_name">user 1</div>
+                    <input id="comment_input"></input> 
+                    <button onclick=postComment()>댓글 작성</button>
+                </div>
+                <div class="comment_list">
+                    {% for comment in comments %}
+                    <div class="comment" data-comment-id="{{ comment.id }}">
+                        <div class="comment_user">{{ comment.user }}</div>
+                        <span>{{ comment.comment }}</span>
+                        <div class="comment_date">{{ comment.chrmt_upload_date }}</div>
+                        <div> <img src="{% static 'img/board/like_btn.svg' %}"> </div>
+                        <div class="comment_btn">
+                            <button class="comment_delete" onclick="deleteComment({{comment.id}})">삭제</button>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>

@@ -12,10 +12,9 @@
 
 
 ## 🫂 팀원	
-|김유진|민중원|임준성|최유미|
-|----|-----|----|----|
-| <a href="https://github.com/superkingyj" target="_blank"> <img src="https://avatars.githubusercontent.com/u/43868490?v=4" alt="김유진 프로필" style="width:150px; border-radius:50px"/> </a> | <a href="https://github.com/MinJoongWon" target="_blank"><img src="https://avatars.githubusercontent.com/u/137133419?v=4" alt="민중원 프로필" style="width:150px; border-radius:50px"/> </a>|<a href="https://github.com/junseong123" target="_blank"> <img src="https://avatars.githubusercontent.com/u/85379866?v=4" alt="임준성 프로필" style="width:150px; border-radius:50px"/></a>| <a href="https://github.com/yumiyumii" target="_blank"> <img src="https://avatars.githubusercontent.com/u/95002550?v=4" alt="최유미 프로필" style="width:150px; border-radius:50px"/></a>|
-
+|김유진|민중원|임준성|
+|----|-----|----|
+| <a href="https://github.com/superkingyj" target="_blank"> <img src="https://avatars.githubusercontent.com/u/43868490?v=4" alt="김유진 프로필" style="width:150px; border-radius:50px"/> </a> | <a href="https://github.com/MinJoongWon" target="_blank"><img src="https://avatars.githubusercontent.com/u/137133419?v=4" alt="민중원 프로필" style="width:150px; border-radius:50px"/> </a>|<a href="https://github.com/junseong123" target="_blank"> <img src="https://avatars.githubusercontent.com/u/85379866?v=4" alt="임준성 프로필" style="width:150px; border-radius:50px"/></a>|
 
 
 <br>
@@ -42,13 +41,13 @@
 
 <br>
 
-## 👩🏻‍💻 9월 12일 작업 순서
+## 👩🏻‍💻 9월 18일 작업 순서
 |브랜치|담당자|
 |:--------|:-:|
-|templates|유진|
-|css/js|중원|
-|model|유미|
-|view|준성|
+|templates|중원|
+|css/js||
+|model|준성|
+|view|유진|
 
 <br>
 
