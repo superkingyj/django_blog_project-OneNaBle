@@ -7,6 +7,7 @@ from .models import *
 from .serializers import *
 from .models import *
 import re
+import json
 
 # blog post form
 from .form import BlogPostForm
@@ -67,22 +68,29 @@ class LikeViewSet(viewsets.ModelViewSet):
     
     # 좋아요 작성/삭제
     def create(self, request):
-        queryset = Like.objects.filter(
+        like_queryset = Like.objects.filter(
             user=request.data['user'], 
             blog_post=request.data['blog_post'], 
             comment=request.data['comment']
         )
         
-        # 이미 좋아요를 눌렀다면
-        if queryset.exists():
-            queryset.delete()
-            return Response(status=204)
-        # 좋아요를 누르지 않았다면
+        if like_queryset.exists():
+            like_queryset.delete()
+            comment_queryset = Comment.objects.get(id=request.data['comment'])
+            comment_queryset.like_cnt -= 1
+            comment_queryset.save()
+            data = {'like_cnt': comment_queryset.like_cnt}
+            return Response(data=json.dumps(data), status=204)
+        
         else:
             serializer = LikeSerializer(data=request.data)
             if serializer.is_valid():
                 serializer.save()
-                return Response(serializer.data, status=201)
+                comment_queryset = Comment.objects.get(id=request.data['comment'])
+                comment_queryset.like_cnt += 1
+                comment_queryset.save()
+                data = {'like_cnt': comment_queryset.like_cnt}
+                return Response(data=json.dumps(data), status=201)
             return Response(serializer.errors, status=400)
         
 

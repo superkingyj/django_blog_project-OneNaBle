@@ -1,9 +1,14 @@
+// board.js 
+
 const RETRIEVE_API = "http://localhost:8000/api/post/";
 const DELETE_API = "http://localhost:8000/api/post/";
 const COMMENT_API = "http://127.0.0.1:8000/api/comment/";
 const LIKE_API = "http://127.0.0.1:8000/api/like/";
 const WRITE_URL = "http://127.0.0.1:8000/write/";
 const BLOGPOSTID = document.location.href.split('/')[4];
+const LIKE_BTN_DIR = "/static/img/board/like_btn.svg";
+const LIKE_ACTIVE_BTN_DIR = "/static/img/board/like_active_btn.svg";
+
 
 function getCookie(name) {
     var cookieValue = null;
@@ -57,7 +62,7 @@ function drawComment(result) {
         <div class="comment_user">${result.user}</div>
         <span>${result.comment}</span>
         <div class="comment_date">${result.chrmt_upload_date}</div>
-        <div> <img src="/static/img/board/like_btn.svg"> </div>
+        <div onclick=likePost(${result.id})> <img src="/static/img/board/like_btn.svg"> </div>
         <div class="comment_btn">
             <button class="comment_delete" onclick="deleteComment(${result.id})">삭제</button>
         </div>
@@ -118,17 +123,33 @@ async function deleteComment(commentId) {
 }
 
 // 좋아요 작성
-function likePost() {
+async function likePost(event, commentId) {
     let formData = new FormData();
-    const comment = ;
-    const user = 1 // TODO: user_id 1로 고정
-    const blog = BLOGPOSTID
-    formData.append() // TODO
+    const comment = commentId;
+    const user = 1; // TODO: user_id 1로 고정
+    const blogPost = BLOGPOSTID;
+    const img = event.target;
+    const span = img.nextElementSibling;
 
-    const response = fetch(LIKE_API + BLOGPOSTID, {
+    formData.append('user', user);
+    formData.append('comment', comment);
+    formData.append('blog_post', blogPost);
+
+    const response = await fetch(LIKE_API, {
         method: 'POST',
+        body: formData,
         headers: {
             'X-CSRFToken': getCookie('csrftoken')
         }
     });
+
+    // 만약 원래 좋아요가 활성화 되어 있었다면
+    if (response.status == 204) {
+        event.target.src = LIKE_BTN_DIR;
+        span.innerText = parseInt(span.innerText) - 1
+    }
+    else {
+        event.target.src = LIKE_ACTIVE_BTN_DIR;
+        span.innerText = parseInt(span.innerText) + 1
+    }
 }
