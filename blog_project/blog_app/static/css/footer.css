@@ -1,24 +1,24 @@
-footer{
-    bottom: 0;
+footer {
+    /* bottom: 0; */
     width: 100%;
     background-color: #e7e3da;
-    height: 200px;
+    min-height: 200px;
     display: flex;
     justify-content: end;
     font-family: 'Pretendard', sans-serif;
 }
 
-footer .container{
+footer .container {
     align-items: self-end;
     display: flex;
 }
 
-footer .container p{
+footer .container p {
     color: #1e1e1e;
     justify-content: end;
 }
 
-span{
+span {
     font-weight: bold;
 }
 

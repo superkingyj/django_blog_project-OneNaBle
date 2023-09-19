@@ -88,7 +88,7 @@
                 <div name="comment_form" method="POST">
                     <div class="user_name">user 1</div>
                     <input id="comment_input"></input> 
-                    <button onclick=postComment()>댓글 작성</button>
+                    <button class="comment-post" onclick=postComment()>댓글 작성</button>
                 </div>
                 <div class="comment_list">
                     {% if comments %}
@@ -106,7 +106,8 @@
                                     <span class="like_cnt"> {{comment.like_cnt}} </span>
                             </div>
                         <div class="comment_btn">
-                                <button class="comment_delete" onclick=deleteComment({{comment.id}})>삭제</button>
+                                <button class="comment_delete" onclick="if (window.confirm('삭제하시겠습니까?'))
+                                { deleteComment('{{comment.id}}'); }">삭제</button>
                         </div>
                     </div>
                     {% endfor %}

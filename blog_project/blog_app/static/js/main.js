@@ -20,15 +20,21 @@ async function fetchPostList() {
             if (i == 0) { fetchPopularPost(currData); }
 
             const newContent = currData.content.replace(/<[^>]*>?/g, '');
+
+            let options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: true };
             let uploadDate = new Date(currData.upload_date);
-            uploadDate = uploadDate.toLocaleString("ko-KR");
+            uploadDate = uploadDate.toLocaleString("ko-KR", options);
+            // replace 위치 바꾸면 오전 AM 변환
+            uploadDate = uploadDate.replace(/\./g, '').replace(/ /g, '').replace('오전', 'AM').replace('오후', 'PM');
+            uploadDate = `${uploadDate.slice(0, 4)}년 ${uploadDate.slice(4, 6)}월 ${uploadDate.slice(6, 8)}일 ${uploadDate.slice(8)}`;
+
             postHTML += `
                 <div class='posting' onclick=window.location.href="${BOARD_URL}/${currData.id}">
                     <div class="posting-img">
                         <img src=${currData.img}> 
                     </div>
                     <div class="posting-info">
-                        <div class="posting_date">${currData.upload_date}</div>
+                        <div class="posting_date">${uploadDate}</div>
                         <div class="posting_title">${currData.title}</div>
                         <div class="posting_content">${newContent}</div>
                     </div>
