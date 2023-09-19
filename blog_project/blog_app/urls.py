@@ -26,13 +26,14 @@ router.register(r"user", views.UserViewSet)
 router.register(r"comment", views.CommentViewSet)
 router.register(r"like", views.LikeViewSet)
 
-
+app_name = 'blog_app'
 urlpatterns = [
     path("api/", include(router.urls)),
     
     path("api/post", post_list, name="post_list"),
     path("api/post/<int:pk>", post_detail, name="post_detail"),
     path("api/like", like_list, name="like_list"),
+    path('post/<int:post_id>/', views.board, name='post_title'),
     
     path("", views.board_client, name="board_client"),
     path("login/", views.custom_login, name="login"),
@@ -40,4 +41,10 @@ urlpatterns = [
     
     path("write/<int:blog_post_id>", views.write, name="write_with_id"),
     path("board/<int:blog_post_id>", views.board, name="board"),
+
+    # ai
+    path('autocomplete/', views.autocomplete, name='autocomplete'),
+
+    # haystack
+    path('search', views.search_view, name='search_view'),
 ]
