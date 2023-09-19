@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="{% static 'css/header_white.css'%}?{% now "U"%}"/>
     <link rel="stylesheet" href="{% static 'css/board_write.css'%}?{% now "U"%}"/>
     <link rel="stylesheet" href="{% static 'css/footer.css'%}?{% now "U"%}"/>
+    
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <title>write</title>
   </head>
  
@@ -18,37 +23,55 @@
     </header>
 
     <div class="content">
-      <form method="POST" id="post_form" action="{% url 'post_list' %}">
+      <form method="POST" id="post_form" action="{% url 'blog_app:post_list' %}">
         {% csrf_token %}
         {{ form|safe }}
+        {% comment %} <textarea id='content'></textarea> {% endcomment %}
       </form>
 
       <div class="right_sidebar">
         
-        <div class="ai_writer">
-          <img src="{% static "img/board_write/ai.svg" %}">
+        <div class="ai_writer" id="aiAutocompleteButton">
+          <img id="ai-img" src="{% static "img/board_write/ai.svg" %}">
+          <div id="loading-animation" style="display: none;">
+            <img src="{% static 'img/board_write/loading.gif' %}" alt="로딩 중" /></div>
           <div>AI글 자동완성</div>
         </div>
 
         <div class="topic">
-          <div>TOPIC</div>
+          <div class="topic-name">TOPIC</div>
           <div>
             <form id="topic_form">
-              <input type="radio" checked name="post_category" value='1'/>일상
-              <input type="radio" name="post_category" value='2'/>요리 
-              <input type="radio" name="post_category" value='3'/>여행 
-              <input type="radio" name="post_category" value='4'/>영화 
-              <input type="radio" name="post_category" value='5'/>IT/전자기기
+              <div>
+                <input type="radio" checked name="post_category" value='1'/>
+                <label>일상</label>
+              </div>
+              <div>
+                <input type="radio" name="post_category" value='2'/>
+                <label>요리</label>
+              </div>
+              <div>
+                <input type="radio" name="post_category" value='3'/>
+                <label>여행</label>
+              </div>
+              <div>
+                <input type="radio" name="post_category" value='4'/>
+                <label>영화</label>
+              </div>
+              <div>
+                <input type="radio" name="post_category" value='5'/>
+                <label>IT</label>
+              </div>
             </form>
           </div>
         </div>
 
         <div class="upload_info">
-          <div>UPLOAD INFO</div>
+          <div class="upload_info_name">UPLOAD INFO</div>
           <div>상태: 미게시</div>
           <div class="save_temp_and_submit">
-            <button id="save_temp_btn">임시저장</button>
-            <button id="post_form_btn">글 작성</button>
+            <button id="save_temp_btn" value="temp" onclick="writePost('temp')">임시저장</button>
+            <button id="post_form_btn" value="save" onclick="writePost('save')">글 작성</button>
           </div>
         </div>
       </div>
@@ -60,4 +83,5 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="{% static 'js/board_write.js' %}"></script>  
   <script src="{% static 'js/header.js' %}"></script>
+  <script src="{% static 'js/ai_write.js' %}"></script>
 </html>

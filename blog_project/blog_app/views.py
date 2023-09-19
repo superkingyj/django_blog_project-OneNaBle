@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import logout as auth_logout
+from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -7,6 +9,7 @@ from .models import *
 from .serializers import *
 from .models import *
 import re
+import json
 
 # blog post form
 from .form import BlogPostForm
@@ -15,10 +18,25 @@ from .form import BlogPostForm
 from django.contrib.auth import authenticate, login
 from .form import CustomLoginForm
 
+# AI
+from django.http import JsonResponse
+import openai
+
+#haystack
+from haystack.query import SearchQuerySet
+from django.http import JsonResponse
+
+
 class BlogPostViewSet(viewsets.ModelViewSet):
     queryset = BlogPost.objects.all().order_by('-views')
     serializer_class = BlogPostSerializer
     http_method_names = ['get', 'post', 'put', 'delete']
+    
+    def list(self, request):
+        queryset = BlogPost.objects.all().filter(status='True').order_by('-views')
+        serializer = BlogPostSerializer(queryset, many=True)
+        return Response(serializer.data, status=200)
+    
     def create(self, request):
         content = request.data['content']
         pattern = re.compile('["\'](\/[^"\']*?)["\']')
@@ -50,6 +68,12 @@ class BlogPostViewSet(viewsets.ModelViewSet):
         serializer = BlogPostSerializer(queryset, many=True)
         return Response(serializer.data)
     
+    @action(methods=['get'], detail=False)
+    def temp_post(self, request):
+        queryset = BlogPost.objects.filter(status='False').first()
+        serializer = BlogPostSerializer(queryset)
+        return Response(serializer.data)
+    
     
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -67,22 +91,28 @@ class LikeViewSet(viewsets.ModelViewSet):
     
     # 좋아요 작성/삭제
     def create(self, request):
-        queryset = Like.objects.filter(
+        like_queryset = Like.objects.filter(
             user=request.data['user'], 
             blog_post=request.data['blog_post'], 
             comment=request.data['comment']
         )
         
-        # 이미 좋아요를 눌렀다면
-        if queryset.exists():
-            queryset.delete()
-            return Response(status=204)
-        # 좋아요를 누르지 않았다면
+        if like_queryset.exists():
+            like_queryset.delete()
+            comment_queryset = Comment.objects.get(id=request.data['comment'])
+            comment_queryset.like_cnt -= 1
+            comment_queryset.save()
+            data = {'like_cnt': comment_queryset.like_cnt}
+            return Response(data=json.dumps(data), status=204)
         else:
             serializer = LikeSerializer(data=request.data)
             if serializer.is_valid():
                 serializer.save()
-                return Response(serializer.data, status=201)
+                comment_queryset = Comment.objects.get(id=request.data['comment'])
+                comment_queryset.like_cnt += 1
+                comment_queryset.save()
+                data = {'like_cnt': comment_queryset.like_cnt}
+                return Response(data=json.dumps(data), status=201)
             return Response(serializer.errors, status=400)
         
 
@@ -103,7 +133,7 @@ def custom_login(request):
             
             if user is not None:
                 login(request, user)
-                return redirect('board_client')
+                return redirect('blog_app:board_client')
             
     return render(request, 'login.html', {'form': form})
 
@@ -111,25 +141,79 @@ def custom_login(request):
 def board_client(request):
     return render(request, 'board_client.html')
 
-@login_required(login_url='login')
+@login_required(login_url='blog_app:login')
 def write(request, blog_post_id=None):
     if request.user.is_authenticated:
         form = BlogPostForm()
         return render(request, 'board_write.html', {'form': form})
 
-@login_required(login_url='login')
+@login_required(login_url='blog_app:login')
 def board(request, blog_post_id):  
     if request.user.is_authenticated:
         blog_post = BlogPost.objects.get(pk=blog_post_id)
         blog_post.views += 1
         blog_post.save()
-        related_posts = BlogPost.objects.filter(category=blog_post.category)
-        comments = Comment.objects.filter(blog_post=blog_post_id)
         
+        related_posts = BlogPost.objects.filter(category=blog_post.category, status='True').order_by('-id')
+        comments = Comment.objects.filter(blog_post=blog_post_id)
+        previous_post = BlogPost.objects.filter(id__lt=blog_post_id, status='True').order_by('-id').first()
+        next_post = BlogPost.objects.filter(id__gt=blog_post_id, status='True').order_by('id').first()
+
         context = {
             'blog_post': blog_post, 
             'related_posts': related_posts, 
-            'comments': comments
+            'comments': comments,
+            'previous_post': previous_post,
+            'next_post': next_post,
         }
 
         return render(request, 'board.html', context)
+
+#haystack
+def search_view(request):
+    query = request.GET.get('q')
+    results = []
+
+    if query:
+        results = SearchQuerySet().filter(text=query)
+
+    context = []
+    for result in results:
+        context.append({
+            "id": result.object.id,
+            "title": result.title, 
+            "content": result.content,
+            "img": result.object.img
+        })
+     
+    return JsonResponse(context, safe=False)
+
+# Chat gpt API 사용
+openai.api_key = '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'
+
+# 글 자동완성 기능
+def autocomplete(request):
+    if request.method == "POST":
+
+        #제목 필드값 가져옴
+        prompt = request.POST.get('title')
+        try:
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": prompt},
+                ],
+            )
+            # 반환된 응답에서 텍스트 추출해 변수에 저장
+            message = response['choices'][0]['message']['content']
+            print(message)
+        except Exception as e:
+            message = str(e)
+        return JsonResponse({"message": message})
+    return render(request, 'autocomplete.html')
+
+
+def logout(request):
+    auth_logout(request)
+    return redirect("blog_app:board_client")

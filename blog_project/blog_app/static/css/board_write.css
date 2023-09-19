@@ -1,7 +1,11 @@
-*{
+* {
     font-family: 'Pretendard', sans-serif;
 }
-  
+
+body {
+    background-color: #e7e3da;
+}
+
 nav {
     display: flex;
     justify-content: space-around;
@@ -15,17 +19,37 @@ nav {
     color: #1E1E1E;
 }
 
-.content{
+.content {
     display: flex;
     justify-content: center;
+    background-color: #F9F8F4;
 }
 
-textarea{
+textarea {
     resize: none;
     height: 500px;
 }
 
-#title{
+label[for="id_title"] {
+    display: none;
+}
+
+#id_title {
+    background-color: #fff;
+    font-size: 24px;
+    border: none;
+    border-bottom: 1px solid black;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+label[for="id_summer_fields"] {
+    display: none;
+}
+
+
+#title {
     display: flex;
     width: 740px;
     padding: 11px 16px;
@@ -35,7 +59,13 @@ textarea{
     background: #FFF;
 }
 
-.ai_writer{
+.right_sidebar {
+    margin-left: 20px;
+    margin-bottom: 20px;
+
+}
+
+.ai_writer {
     display: flex;
     width: 264px;
     height: 88px;
@@ -47,13 +77,26 @@ textarea{
     border: 1px solid #CAC8C5;
 }
 
-.ai_writer div{
+.ai_writer div {
     color: #000;
     font-size: 16px;
     font-weight: 500;
 }
 
-.topic{
+.ai_writer:hover {
+    background-color: #474747;
+    transition: transform 0.8s;
+}
+
+.ai-img {
+    width: 40px;
+}
+
+.loading-animation {
+    width: 40px;
+}
+
+.topic {
     display: flex;
     width: 264px;
     height: 175px;
@@ -61,47 +104,66 @@ textarea{
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-    flex-shrink: 0;
 
     border-radius: 2px;
     border: 1px solid #CAC8C5;
 }
 
-.upload_info{
+.topic-name {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#topic_form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.upload_info {
     display: flex;
     width: 264px;
     height: 175px;
     padding: 16px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 50px;
     flex-shrink: 0;
-    
+
     border-radius: 2px;
     border: 1px solid #CAC8C5;
 }
 
-.save_temp_and_submit{
+.upload_info_name {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.save_temp_and_submit {
     display: flex;
 }
 
-#save_temp {
+#save_temp_btn {
     padding: 4px 17px;
     border: none;
     border: 1px solid #1e1e1e;
     color: #1e1e1e;
     width: 100%;
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-#submit{
+#post_form_btn {
     padding: 4px 17px;
     border: none;
     background-color: #1e1e1e;
     color: #fff;
     width: 100%;
+    font-size: 14px;
 }
 
 footer {
     position: absolute;
-    bottom: 0;
 }
