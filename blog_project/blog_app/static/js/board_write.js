@@ -9,20 +9,6 @@ const REDIRECT_URL = "http://127.0.0.1:8000/board/";
 let FLAG = "write";
 let blogPostId = 0;
 
-document.addEventListener('DOMContentLoaded', async function () {
-    const tmp = document.location.href.split('/');
-    blogPostId = tmp[4];
-
-    // 업데이트 할 포스팅 불러오기
-    if (blogPostId) {
-        initPost(RETRIEVE_API + blogPostId);
-    }
-    // 임시저장한 포스팅 불러오기
-    else {
-        initPost(TEMP_POST_API);
-    }
-})
-
 async function initPost(url) {
     const response = await fetch(url, {
         method: 'GET',
@@ -43,6 +29,18 @@ async function initPost(url) {
         }
     }
 }
+
+const iframe = document.querySelector('iframe');
+iframe.addEventListener("load", function () {
+    const tmp = document.location.href.split('/');
+    blogPostId = tmp[4];
+    if (blogPostId) {
+        initPost(RETRIEVE_API + blogPostId);
+    }
+    else {
+        initPost(TEMP_POST_API);
+    }
+})
 
 function getCookie(name) {
     var cookieValue = null;
