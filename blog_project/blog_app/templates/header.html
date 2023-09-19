@@ -5,6 +5,7 @@
         <img class="nav_logo_img">
     </div>
     <div class="nav_side">
+        <input type="text", id="search_box" placeholder="제목이나 내용으로 포스팅을 검색하세요!">
         <span class='filter_btn' title="일상" onclick=filtering(1)>일상</span>
         <span class='filter_btn' title="요리" onclick=filtering(2)>요리</span>
         <span class='filter_btn' title="여행" onclick=filtering(3)>여행</span>
@@ -13,9 +14,9 @@
         
         {% if user.is_authenticated %}
         <a id="logout">Logout</a>
-        <a id="login" href="{% url 'write' %}">Justwrite</a>
+        <a id="login" href="{% url 'blog_app:write' %}">Justwrite</a>
         {% else %}
-        <a id="login" href="{% url 'login' %}">Login</a>
+        <a id="login" href="{% url 'blog_app:login' %}">Login</a>
         {% endif %}
     </div>
 </nav>
