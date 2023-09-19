@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>📚포스팅검색📚</h1>
+        <nav>
+            <a href="{% url 'search_view' %}"> 다시 검색하기</a>
+        </nav>
+    </header>
+
+    <main>
+        <main>{% block content %}{% endblock %}</main>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 yujinkim</p>
+    </footer>
+</body>
+</html>
