@@ -1,9 +1,10 @@
 const RETRIEVE_API = "http://localhost:8000/api/post/";
 const UPDATE_API = "http://localhost:8000/api/post/";
+const TEMP_POST_API = "http://localhost:8000/api/post/temp_post/";
 
 const POST_URL = "http://127.0.0.1:8000/api/post/";
 const REDIRECT_URL = "http://127.0.0.1:8000/board/";
-
+// const MAIN_URL = "http://127.0.0.1:8000/";
 
 let FLAG = "write";
 let blogPostId = 0;
@@ -12,28 +13,36 @@ document.addEventListener('DOMContentLoaded', async function () {
     const tmp = document.location.href.split('/');
     blogPostId = tmp[4];
 
+    // 업데이트 할 포스팅 불러오기
     if (blogPostId) {
-        const response = await fetch(RETRIEVE_API + blogPostId, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-CSRFToken': getCookie('csrftoken')
-            }
-        });
-
-        console.log(response);
-
-        if (response.ok) {
-            FLAG = "update";
-            const data = await response.json();
-            const title = document.getElementById('id_title');
-            title.value = data.title;
-
-            let noteEditable = document.querySelector('iframe').contentWindow.document.querySelector(".note-editable");
-            noteEditable.innerHTML = data.content;
-        }
+        initPost(RETRIEVE_API + blogPostId);
+    }
+    // 임시저장한 포스팅 불러오기
+    else {
+        initPost(TEMP_POST_API);
     }
 })
+
+async function initPost(url) {
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': getCookie('csrftoken')
+        }
+    });
+    if (response.ok) {
+        const data = await response.json();
+        if (data.title !== "") {
+            FLAG = "update";
+            const title = document.getElementById('id_title');
+            let noteEditable = document.querySelector('iframe').contentWindow.document.querySelector(".note-editable");
+            title.value = data.title;
+            noteEditable.innerHTML = data.content;
+            blogPostId = data.id;
+        }
+    }
+}
 
 function getCookie(name) {
     var cookieValue = null;
@@ -61,7 +70,7 @@ function getCategory() {
 }
 
 // 작성
-async function write() {
+async function writePost(flag) {
     let formData = new FormData();
     let noteEditable = document.querySelector('iframe').contentWindow.document.querySelector(".note-editable");
 
@@ -71,10 +80,15 @@ async function write() {
     formData.append('title', title);
     formData.append('content', content);
     formData.append('user', 1); // TODO: 유저 1로 고정해놓음
-    formData.append('status', 'true'); // 저장
+
+    if (flag == "temp") {
+        formData.append('status', 'false'); // 임시저장
+    } else {
+        formData.append('status', 'true'); // 저장
+    }
+
     formData.append('category', getCategory());
 
-    console.log(formData);
 
     if (FLAG == 'write') {
         var response = await fetch(POST_URL, {
@@ -97,9 +111,13 @@ async function write() {
 
     if (response.ok) {
         const result = await response.json();
-        console.log(result);
-        window.location.href = REDIRECT_URL + result.id;
+        if (flag == "temp") {
+            alert("게시글이 성공적으로 임시 저장 되었습니다! ");
+            window.location.href = MAIN_URL;
+        }
+        else {
+            alert("게시글이 성공적으로 포스팅 되었습니다! ");
+            window.location.href = REDIRECT_URL + result.id;
+        }
     }
 };
-
-document.getElementById('post_form_btn').addEventListener('click', write);
