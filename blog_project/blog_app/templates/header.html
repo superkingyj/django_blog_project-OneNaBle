@@ -13,10 +13,10 @@
         <span class='filter_btn' title="IT" onclick=filtering(5)>IT</span>
         
         {% if user.is_authenticated %}
-        <button class="logout"><a id="logout" href="{% url 'blog_app:logout' %}">Logout</a></button>
+        <a id="logout" href="{% url 'blog_app:logout' %}">Logout</a>
         <a id="login" href="{% url 'blog_app:write' %}">Justwrite</a>
         {% else %}
-        <button class="login"><a id="login" href="{% url 'blog_app:login' %}">Login</a></button>
+        <a id="login" href="{% url 'blog_app:login' %}">Login</a>
         {% endif %}
     </div>
 </nav>

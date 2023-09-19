@@ -58,3 +58,21 @@ nav {
   line-height: normal;
   text-decoration: none;
 }
+
+
+#logout {
+  font-size: 13px;
+  color: #F9F8F4;
+  display: flex;
+  width: 43px;
+  height: 16px;
+  font-weight: bold;
+  transition: all 0.4s;
+  overflow: hidden;
+  left: 1062px;
+  top: 42px;
+  line-height: 13.51px;
+  align-items: center;
+  text-align: center;
+  font-family: Prentendard;
+}
