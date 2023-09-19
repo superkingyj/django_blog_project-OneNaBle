@@ -1,7 +1,7 @@
-*{
+* {
     font-family: 'Pretendard', sans-serif;
 }
-  
+
 nav {
     display: flex;
     justify-content: space-around;
@@ -15,17 +15,17 @@ nav {
     color: #1E1E1E;
 }
 
-.content{
+.content {
     display: flex;
     justify-content: center;
 }
 
-textarea{
+textarea {
     resize: none;
     height: 500px;
 }
 
-#title{
+#title {
     display: flex;
     width: 740px;
     padding: 11px 16px;
@@ -35,7 +35,7 @@ textarea{
     background: #FFF;
 }
 
-.ai_writer{
+.ai_writer {
     display: flex;
     width: 264px;
     height: 88px;
@@ -47,13 +47,26 @@ textarea{
     border: 1px solid #CAC8C5;
 }
 
-.ai_writer div{
+.ai_writer div {
     color: #000;
     font-size: 16px;
     font-weight: 500;
 }
 
-.topic{
+.ai_writer:hover {
+    background-color: #474747;
+    transition: transform 0.8s;
+}
+
+.ai-img {
+    width: 40px;
+}
+
+.loading-animation {
+    width: 40px;
+}
+
+.topic {
     display: flex;
     width: 264px;
     height: 175px;
@@ -67,7 +80,7 @@ textarea{
     border: 1px solid #CAC8C5;
 }
 
-.upload_info{
+.upload_info {
     display: flex;
     width: 264px;
     height: 175px;
@@ -76,12 +89,12 @@ textarea{
     align-items: flex-start;
     gap: 10px;
     flex-shrink: 0;
-    
+
     border-radius: 2px;
     border: 1px solid #CAC8C5;
 }
 
-.save_temp_and_submit{
+.save_temp_and_submit {
     display: flex;
 }
 
@@ -93,7 +106,7 @@ textarea{
     width: 100%;
 }
 
-#submit{
+#submit {
     padding: 4px 17px;
     border: none;
     background-color: #1e1e1e;
