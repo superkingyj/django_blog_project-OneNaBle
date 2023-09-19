@@ -2,6 +2,10 @@
     font-family: 'Pretendard', sans-serif;
 }
 
+body {
+    background-color: #e7e3da;
+}
+
 nav {
     display: flex;
     justify-content: space-around;
@@ -18,12 +22,32 @@ nav {
 .content {
     display: flex;
     justify-content: center;
+    background-color: #F9F8F4;
 }
 
 textarea {
     resize: none;
     height: 500px;
 }
+
+label[for="id_title"] {
+    display: none;
+}
+
+#id_title {
+    background-color: #fff;
+    font-size: 24px;
+    border: none;
+    border-bottom: 1px solid black;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+label[for="id_summer_fields"] {
+    display: none;
+}
+
 
 #title {
     display: flex;
@@ -33,6 +57,12 @@ textarea {
     gap: 10px;
     border: 1px solid #FFF;
     background: #FFF;
+}
+
+.right_sidebar {
+    margin-left: 20px;
+    margin-bottom: 20px;
+
 }
 
 .ai_writer {
@@ -74,11 +104,22 @@ textarea {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-    flex-shrink: 0;
 
     border-radius: 2px;
     border: 1px solid #CAC8C5;
 }
+
+.topic-name {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#topic_form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 
 .upload_info {
     display: flex;
@@ -87,34 +128,42 @@ textarea {
     padding: 16px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 50px;
     flex-shrink: 0;
 
     border-radius: 2px;
     border: 1px solid #CAC8C5;
 }
 
+.upload_info_name {
+    font-size: 25px;
+    font-weight: bold;
+}
+
 .save_temp_and_submit {
     display: flex;
 }
 
-#save_temp {
+#save_temp_btn {
     padding: 4px 17px;
     border: none;
     border: 1px solid #1e1e1e;
     color: #1e1e1e;
     width: 100%;
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-#submit {
+#post_form_btn {
     padding: 4px 17px;
     border: none;
     background-color: #1e1e1e;
     color: #fff;
     width: 100%;
+    font-size: 14px;
 }
 
 footer {
     position: absolute;
-    bottom: 0;
 }
