@@ -1,7 +1,7 @@
 * {
-    font-family: 'Pretendard', sans-serif;
+  font-family: 'Pretendard', sans-serif;
 }
-  
+
 header {
   width: 100%;
   height: 520px;
@@ -19,7 +19,7 @@ nav {
 }
 
 .nav_logo_img {
-  content : url("http://127.0.0.1:8000/static/img/common/mylog_white.svg");
+  content: url("http://127.0.0.1:8000/static/img/common/mylog_white.svg");
 }
 
 .nav_side {
@@ -30,6 +30,14 @@ nav {
   color: #F9F8F4;
 }
 
+#search_box {
+  color: #F9F8F4;
+  background-color: #1E1E1E;
+  font-size: 15px;
+  border: none;
+  border-bottom: 1px solid gray;
+  width: 270px;
+}
 
 #login {
   width: 100px;

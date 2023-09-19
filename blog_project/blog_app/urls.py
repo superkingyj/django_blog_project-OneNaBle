@@ -1,9 +1,7 @@
-from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import views
-from django.conf import settings
-from django.conf.urls import static
 
 post_list = views.BlogPostViewSet.as_view({
     'get': 'list',
@@ -37,8 +35,8 @@ urlpatterns = [
     
     path("", views.board_client, name="board_client"),
     path("login/", views.custom_login, name="login"),
+    path("logout/", views.logout, name="logout"),
     path("write/", views.write, name="write"),
-    
     path("write/<int:blog_post_id>", views.write, name="write_with_id"),
     path("board/<int:blog_post_id>", views.board, name="board"),
 

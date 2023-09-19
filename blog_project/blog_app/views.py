@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import logout as auth_logout
+from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -23,13 +25,18 @@ import openai
 #haystack
 from haystack.query import SearchQuerySet
 from django.http import JsonResponse
-from django.core import serializers
-from django.http import HttpResponse
+
 
 class BlogPostViewSet(viewsets.ModelViewSet):
     queryset = BlogPost.objects.all().order_by('-views')
     serializer_class = BlogPostSerializer
     http_method_names = ['get', 'post', 'put', 'delete']
+    
+    def list(self, request):
+        queryset = BlogPost.objects.all().filter(status='True').order_by('-views')
+        serializer = BlogPostSerializer(queryset, many=True)
+        return Response(serializer.data, status=200)
+    
     def create(self, request):
         content = request.data['content']
         pattern = re.compile('["\'](\/[^"\']*?)["\']')
@@ -59,6 +66,12 @@ class BlogPostViewSet(viewsets.ModelViewSet):
         category_id = request.query_params['category']        
         queryset = BlogPost.objects.filter(category=category_id)
         serializer = BlogPostSerializer(queryset, many=True)
+        return Response(serializer.data)
+    
+    @action(methods=['get'], detail=False)
+    def temp_post(self, request):
+        queryset = BlogPost.objects.filter(status='False').first()
+        serializer = BlogPostSerializer(queryset)
         return Response(serializer.data)
     
     
@@ -91,7 +104,6 @@ class LikeViewSet(viewsets.ModelViewSet):
             comment_queryset.save()
             data = {'like_cnt': comment_queryset.like_cnt}
             return Response(data=json.dumps(data), status=204)
-        
         else:
             serializer = LikeSerializer(data=request.data)
             if serializer.is_valid():
@@ -121,7 +133,7 @@ def custom_login(request):
             
             if user is not None:
                 login(request, user)
-                return redirect('board_client')
+                return redirect('blog_app:board_client')
             
     return render(request, 'login.html', {'form': form})
 
@@ -129,24 +141,23 @@ def custom_login(request):
 def board_client(request):
     return render(request, 'board_client.html')
 
-@login_required(login_url='login')
+@login_required(login_url='blog_app:login')
 def write(request, blog_post_id=None):
     if request.user.is_authenticated:
         form = BlogPostForm()
         return render(request, 'board_write.html', {'form': form})
 
-@login_required(login_url='login')
+@login_required(login_url='blog_app:login')
 def board(request, blog_post_id):  
     if request.user.is_authenticated:
         blog_post = BlogPost.objects.get(pk=blog_post_id)
         blog_post.views += 1
         blog_post.save()
-        related_posts = BlogPost.objects.filter(category=blog_post.category)
-        comments = Comment.objects.filter(blog_post=blog_post_id)
         
+        related_posts = BlogPost.objects.filter(category=blog_post.category, status='True').order_by('-id')
+        comments = Comment.objects.filter(blog_post=blog_post_id)
         previous_post = BlogPost.objects.filter(id__lt=blog_post_id, status='True').order_by('-id').first()
         next_post = BlogPost.objects.filter(id__gt=blog_post_id, status='True').order_by('id').first()
-
 
         context = {
             'blog_post': blog_post, 
@@ -201,3 +212,8 @@ def autocomplete(request):
             message = str(e)
         return JsonResponse({"message": message})
     return render(request, 'autocomplete.html')
+
+
+def logout(request):
+    auth_logout(request)
+    return redirect("blog_app:board_client")
