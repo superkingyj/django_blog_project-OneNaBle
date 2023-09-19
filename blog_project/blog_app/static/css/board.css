@@ -248,15 +248,24 @@ delete_btn .comment_form {
 }
 
 #comment_input {
-    font-size: 25px;
+    width: 70%;
+    height: 35px;
+    font-size: 15px;
     border: none;
     width: 85%;
 }
 
+#comment_input:focus {
+    outline: none;
+}
+
 .comment-post {
-    font-size: 25px;
+    float: right;
+    font-size: 15px;
     background-color: #fff;
-    border: 1px solid #000
+    width: 120px;
+    height: 35px;
+    border: none
 }
 
 .comment-post:hover {
@@ -273,19 +282,26 @@ delete_btn .comment_form {
 .comment {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid #dbdbdb;
 }
 
 .comment_user {
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .comment_date {
+    text-align: right;
     font-size: 0.8em;
     color: #888888;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.action-box {
+    display: flex;
+    justify-content: space-between;
 }
 
 .like_cnt {
