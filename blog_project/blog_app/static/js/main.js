@@ -20,6 +20,8 @@ async function fetchPostList() {
             if (i == 0) { fetchPopularPost(currData); }
 
             const newContent = currData.content.replace(/<[^>]*>?/g, '');
+            let uploadDate = new Date(currData.upload_date);
+            uploadDate = uploadDate.toLocaleString("ko-KR");
             postHTML += `
                 <div class='posting' onclick=window.location.href="${BOARD_URL}/${currData.id}">
                     <div class="posting-img">
