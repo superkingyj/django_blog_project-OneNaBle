@@ -59,12 +59,26 @@ function drawComment(result) {
 
     const commentHTML = `
     <div class="comment" data-comment-id="${result.id}">
-        <div class="comment_user">${result.user}</div>
-        <span>${result.comment}</span>
-        <div class="comment_date">${result.chrmt_upload_date}</div>
-        <div onclick=likePost(${result.id})> <img src="/static/img/board/like_btn.svg"> </div>
-        <div class="comment_btn">
-            <button class="comment_delete" onclick="deleteComment(${result.id})">삭제</button>
+        <div class="comment_user_img">
+            <div style="width:50px; height: 50px; border-radius: 70%; overflow:hidden;">
+                <img src="/static/img/board/profile.png" style="width:50px; height:50px; object-fit:cover; cursor:pointer;">
+            </div>
+            <div style="display:flex; flex-direction: column; justify-content:space-between;">
+                <div class="comment_user">yjk</div>
+                <span>${result.comment}</span>
+            </div>
+        </div>
+        <div class="action-box"> 
+            <div class="comment_date"> ${result.chrmt_upload_date} </div>
+            <div style="display:flex; justify-content: end; gap:10px;">
+                <div>
+                    <img src="/static/img/board/like_btn.svg" onclick="likePost(event,'1')">
+                    <span class="like_cnt"> ${result.like_cnt} </span>
+                </div>
+                <div class="comment_btn">
+                    <button class="comment_delete" onclick="if (window.confirm('삭제하시겠습니까?')) { deleteComment('1'); }">삭제</button>
+                </div>
+            </div>
         </div>
     </div>
     `;
