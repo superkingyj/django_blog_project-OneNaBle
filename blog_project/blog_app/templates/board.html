@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{% static 'css/header_white.css'%}?{%now "U" %}"/>
         <link rel="stylesheet" href="{% static 'css/footer.css'%}?{%now "U" %}"/>
         <link rel="stylesheet" href="{% static 'css/board.css'%}?{%now "U" %}"/>
+        <link rel="icon" href="{% static 'img/common/onenable.png'%}">
         <title>board</title>
     </head>
 
@@ -96,18 +97,20 @@
                     <div class="comment" data-comment-id="{{ comment.id }}">
                         <div class="comment_user">{{ comment.user }}</div>
                         <span>{{ comment.comment }}</span>
+                        
                         <div class="comment_date">{{ comment.chrmt_upload_date }}</div>
-                            <div> 
+                            <div class="action-box"> 
                                 {% if comment.like_cnt == 0 %}
                                     <img src="{% static 'img/board/like_btn.svg' %}" onclick=likePost(event,'{{comment.id}}')>
                                 {% else %}
                                     <img src="{% static 'img/board/like_active_btn.svg' %}" onclick=likePost(event,'{{comment.id}}')>
                                 {% endif %}
                                     <span class="like_cnt"> {{comment.like_cnt}} </span>
+                            
+                                <div class="comment_btn">
+                                    <button class="comment_delete" onclick="if (window.confirm('삭제하시겠습니까?'))
+                                    { deleteComment('{{comment.id}}'); }">삭제</button>
                             </div>
-                        <div class="comment_btn">
-                                <button class="comment_delete" onclick="if (window.confirm('삭제하시겠습니까?'))
-                                { deleteComment('{{comment.id}}'); }">삭제</button>
                         </div>
                     </div>
                     {% endfor %}
