@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="{% static 'css/footer.css'%}?{%now "U" %}"/>
         <link rel="stylesheet" href="{% static 'css/board.css'%}?{%now "U" %}"/>
         <title>board</title>
-        
     </head>
 
     <body>
@@ -55,21 +54,37 @@
                 </div>
                 <div class="button_flex">
                     <div class="button_flex gap text">
+                        {% if next_post %}
                         <span style="opacity: 0.5;">다음글</span>
-                        <span>글의 제목입니다.</span>
+                        <div class="post-name">
+                            <a href="{% url 'blog_app:board' next_post.id %}">
+                                {{next_post.title}}</a>
+                            {% else %}
+                                <span>다음 글이 없습니다.</span>
+                            {% endif %}
+                        </div>
                     </div>
-                    <span style="opacity: 0.5;">날짜</span>
+                    <span style="opacity: 0.5;">
+                        {{ next_post.upload_date}}</span>
                 </div>
                 <div class = "button_flex">
                     <div class="button_flex gap text">
+                        {% if previous_post %}
                         <span style="opacity: 0.5;">이전글</span>
-                        <span>글의 제목입니다.</span>
+                        <div class="post-name">
+                            <a href="{% url 'blog_app:board' previous_post.id %}">
+                                {{previous_post.title}}</a>
+                            {% else %}
+                                <span>이전 글이 없습니다.</span>
+                            {% endif %}
+                        </div>
                     </div>
-                    <span style="opacity: 0.5;">날짜</span>
+                    <span style="opacity: 0.5;">
+                        {{ previous_post.upload_date}}</span>
                 </div>
             </div>
-
-            <div class="comment">
+            
+            <div class="comment-box">
                 <div name="comment_form" method="POST">
                     <div class="user_name">user 1</div>
                     <input id="comment_input"></input> 
@@ -77,11 +92,11 @@
                 </div>
                 <div class="comment_list">
                     {% if comments %}
-                        {% for comment in comments %}
-                        <div class="comment" data-comment-id="{{ comment.id }}">
-                            <div class="comment_user">{{ comment.user }}</div>
-                            <span>{{ comment.comment }}</span>
-                            <div class="comment_date">{{ comment.chrmt_upload_date }}</div>
+                    {% for comment in comments %}
+                    <div class="comment" data-comment-id="{{ comment.id }}">
+                        <div class="comment_user">{{ comment.user }}</div>
+                        <span>{{ comment.comment }}</span>
+                        <div class="comment_date">{{ comment.chrmt_upload_date }}</div>
                             <div> 
                                 {% if comment.like_cnt == 0 %}
                                     <img src="{% static 'img/board/like_btn.svg' %}" onclick=likePost(event,'{{comment.id}}')>
@@ -90,23 +105,16 @@
                                 {% endif %}
                                     <span class="like_cnt"> {{comment.like_cnt}} </span>
                             </div>
-                            <div class="comment_btn">
+                        <div class="comment_btn">
                                 <button class="comment_delete" onclick=deleteComment({{comment.id}})>삭제</button>
-                            </div>
                         </div>
-                        {% endfor %}
+                    </div>
+                    {% endfor %}
                     {% endif %}
                 </div>
             </div>
         </section>
-        {% comment %} <audio controls loop autoplay>
-
-            <source src="{% static 'sounds/naruto1.mp3' %}" type="audio/mp3">
-            Your browser does not support the audio element.
-        </audio> {% endcomment %}
         <footer> {% include 'footer.html' %} </footer>
-        
-
 </body>
 <script src="{% static 'js/board.js' %}"></script>
 <script src="{% static 'js/header.js' %}"></script>

@@ -16,6 +16,16 @@ from .form import BlogPostForm
 from django.contrib.auth import authenticate, login
 from .form import CustomLoginForm
 
+# AI
+from django.http import JsonResponse
+import openai
+
+#haystack
+from haystack.query import SearchQuerySet
+from django.http import JsonResponse
+from django.core import serializers
+from django.http import HttpResponse
+
 class BlogPostViewSet(viewsets.ModelViewSet):
     queryset = BlogPost.objects.all().order_by('-views')
     serializer_class = BlogPostSerializer
@@ -134,10 +144,60 @@ def board(request, blog_post_id):
         related_posts = BlogPost.objects.filter(category=blog_post.category)
         comments = Comment.objects.filter(blog_post=blog_post_id)
         
+        previous_post = BlogPost.objects.filter(id__lt=blog_post_id, status='True').order_by('-id').first()
+        next_post = BlogPost.objects.filter(id__gt=blog_post_id, status='True').order_by('id').first()
+
+
         context = {
             'blog_post': blog_post, 
             'related_posts': related_posts, 
-            'comments': comments
+            'comments': comments,
+            'previous_post': previous_post,
+            'next_post': next_post,
         }
 
         return render(request, 'board.html', context)
+
+#haystack
+def search_view(request):
+    query = request.GET.get('q')
+    results = []
+
+    if query:
+        results = SearchQuerySet().filter(text=query)
+
+    context = []
+    for result in results:
+        context.append({
+            "id": result.object.id,
+            "title": result.title, 
+            "content": result.content,
+            "img": result.object.img
+        })
+     
+    return JsonResponse(context, safe=False)
+
+# Chat gpt API 사용
+openai.api_key = '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'
+
+# 글 자동완성 기능
+def autocomplete(request):
+    if request.method == "POST":
+
+        #제목 필드값 가져옴
+        prompt = request.POST.get('title')
+        try:
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": prompt},
+                ],
+            )
+            # 반환된 응답에서 텍스트 추출해 변수에 저장
+            message = response['choices'][0]['message']['content']
+            print(message)
+        except Exception as e:
+            message = str(e)
+        return JsonResponse({"message": message})
+    return render(request, 'autocomplete.html')
