@@ -35,7 +35,7 @@ document.getElementById('aiAutocompleteButton').addEventListener('click', functi
             // console.log(data);
             data.message = data.message.replace(/\n/g, '<br>');
             let noteEditable = document.querySelector('iframe').contentWindow.document.querySelector(".note-editable");
-            noteEditable.innerHTML = data.message;
+            noteEditable.innerHTML += data.message;
 
         })
         .catch(error => {

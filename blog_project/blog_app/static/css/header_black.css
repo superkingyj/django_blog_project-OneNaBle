@@ -30,6 +30,10 @@ nav {
   color: #F9F8F4;
 }
 
+.filter_btn:hover {
+  opacity: 0.3;
+}
+
 #search_box {
   color: #F9F8F4;
   background-color: #1E1E1E;
@@ -57,4 +61,35 @@ nav {
   font-weight: 700;
   line-height: normal;
   text-decoration: none;
+}
+
+#login:hover {
+  opacity: 0.8;
+}
+
+#logout {
+  font-size: 13px;
+  color: #1E1E1E;
+  display: flex;
+  width: 44px;
+  height: 16px;
+  font-weight: bold;
+  transition: all 0.4s;
+  overflow: hidden;
+  left: 1062px;
+  top: 42px;
+  line-height: 13.51px;
+  align-items: center;
+  text-align: center;
+  font-family: Prentendard;
+  text-decoration: none;
+}
+
+#logout:hover {
+  background-color: red;
+  color: white;
+}
+
+#logout:hover::before {
+  content: "EXIT()";
 }

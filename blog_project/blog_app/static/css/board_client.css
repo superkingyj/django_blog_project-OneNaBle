@@ -153,6 +153,6 @@ audio {
   display: flex;
   justify-content: center;
   align-items: top;
-  height: 100vh;
+  height: 150px;
   /* 화면 높이를 100%로 설정하여 화면 전체를 차지하도록 합니다. */
 }

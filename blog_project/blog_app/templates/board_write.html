@@ -69,7 +69,15 @@
 
         <div class="upload_info">
           <div class="upload_info_name">UPLOAD INFO</div>
-          <div>상태: 미게시</div>
+          <div>
+            {% if status %}
+              상태: 게시
+            {% else %}
+              상태: 미게시
+            {% endif %}
+          </div>
+          
+          
           <div class="save_temp_and_submit">
             <button id="save_temp_btn" value="temp" onclick="writePost('temp')">임시저장</button>
             <button id="post_form_btn" value="save" onclick="writePost('save')">글 작성</button>
